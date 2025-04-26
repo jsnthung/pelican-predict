@@ -29,8 +29,10 @@ def main():
     print("Sending data to ChatGPT for analysis...\n")
     result = ask_chatgpt(dataset)
 
-    print(json.dumps(result, indent=2))
-    save_to_mongo(result)
+    # print(json.dumps(result, indent=2))
+
+    save_to_mongo(dataset, result)
+
 
 if __name__ == "__main__":
     main()
