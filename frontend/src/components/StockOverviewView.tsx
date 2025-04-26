@@ -1,71 +1,48 @@
-import React from 'react';
+import GraphContainer from './GraphContainer';
+import ReasonContainer from './ReasonContainer';
 
 type StockOverviewViewProps = {
   selectedStock: string;
-  position: 'short' | 'long';
   onStockChange: (stock: string) => void;
-  onPositionChange: (position: 'short' | 'long') => void;
 };
 
-function StockOverviewView({
-  selectedStock,
-  position,
-  onStockChange,
-  onPositionChange,
-}: StockOverviewViewProps) {
+function StockOverviewView({ selectedStock, onStockChange }: StockOverviewViewProps) {
   return (
-    <div className="w-full max-w-5xl mx-auto p-4">
+    <div className="min-h-screen w-full bg-black text-white flex flex-col items-center p-6 space-y-12">
       
       {/* Top controls */}
-      <div className="flex justify-between items-center gap-x-4">
+      <div className="flex items-center bg-gray-800 rounded-full p-3 w-full max-w-md">
         {/* Stock Dropdown */}
-        <select
+        <div className="flex items-center justify-center w-full">	
+          <select
           value={selectedStock}
           onChange={(e) => onStockChange(e.target.value)}
-          className="border border-gray-300 rounded px-4 py-2"
+          className="bg-gray-800 text-gray-300 text-base focus:outline-none w-full px-4"
         >
           <option value="AAPL">AAPL</option>
           <option value="GOOG">GOOG</option>
           <option value="TSLA">TSLA</option>
-        </select>
-
-        {/* Segmented Control */}
-        <div className="flex border border-gray-300 rounded overflow-hidden">
-          <button
-            className={`px-4 py-2 ${position === 'short' ? 'bg-gray-300' : ''}`}
-            onClick={() => onPositionChange('short')}
-          >
-            Short
-          </button>
-          <button
-            className={`px-4 py-2 ${position === 'long' ? 'bg-gray-300' : ''}`}
-            onClick={() => onPositionChange('long')}
-          >
-            Long
-          </button>
+          </select>
         </div>
       </div>
 
       {/* Graph Section */}
-      <div className="space-y-2">
-        <div className="w-full h-64 bg-blue-200 flex items-center justify-center">
-          Stock Graph Placeholder
-        </div>
-        <div>
-          <h2 className="font-semibold">Reasoning:</h2>
-          <p className="text-gray-600">Explain the stock graph here...</p>
-        </div>
+      <div className="w-full max-w-5xl space-y-6">
+      <h1 className="text-2xl font-bold">Technical Analysis:</h1>
+        <GraphContainer stock={selectedStock} />
+        {/* Reasoning for Graph */}
+        <ReasonContainer title="Reasoning for Graph" reason="reason parameter graph" />
+    
       </div>
 
       {/* Table Section */}
-      <div className="space-y-2">
-        <div className="w-full h-48 bg-green-200 flex items-center justify-center">
-          Financial Table Placeholder
+      <div className="w-full max-w-5xl space-y-6">
+      <h1 className="text-2xl font-bold">Fundamental Analysis:</h1>
+        <div className="w-full h-48 bg-gray-800 rounded-lg flex items-center justify-center">
+          <p className="text-gray-300 font-semibold">Financial Table Placeholder</p>
         </div>
-        <div>
-          <h2 className="font-semibold">Reasoning:</h2>
-          <p className="text-gray-600">Explain the financial table here...</p>
-        </div>
+        {/* Reasoning for Graph */}
+        <ReasonContainer title="Table Reasoning" reason="reason parameter Table" />
       </div>
 
     </div>
