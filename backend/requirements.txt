@@ -1,0 +1,8 @@
+openai
+alpaca-py
+yfinance
+pandas
+tabulate
+requests
+torch
+transformers
