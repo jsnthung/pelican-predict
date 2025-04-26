@@ -1,5 +1,6 @@
 from data_loader import fetch_fundamentals, fetch_news, convert_fundamentals_to_JSON
 from chatgpt_client import ask_chatgpt
+from mongo_client import save_to_mongo, test_mongo_connection
 import json
 
 TICKERS = ["AAPL", "TSLA", "NVDA"]
@@ -18,15 +19,18 @@ def collect_dataset(tickers):
     return bundle
 
 def main():
+    # test_mongo_connection()
     dataset = collect_dataset(TICKERS)
 
-    # (optional) Save the raw dataset to a file
+    # Save the raw dataset to a file
     with open("dataset.json", "w") as f:
         json.dump(dataset, f, indent=2)
 
     print("Sending data to ChatGPT for analysis...\n")
     result = ask_chatgpt(dataset)
-    print(result)
+
+    print(json.dumps(result, indent=2))
+    save_to_mongo(result)
 
 if __name__ == "__main__":
     main()
