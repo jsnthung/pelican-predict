@@ -1,16 +1,14 @@
+from openai import OpenAI
 import os
-from http.client import responses
-from pyexpat.errors import messages
-
-import openai
 import json
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load env file since it is one dir above
+# Load env file
 env_path = Path(__file__).parent.parent / '.env'
 load_dotenv(dotenv_path=env_path)
 
+# SYSTEM_PROMPT stays the same
 SYSTEM_PROMPT = """
 You are a professional equity research analyst specializing in fundamental analysis and market sentiment.
 
@@ -20,38 +18,89 @@ You are given structured JSON data for several companies, including:
 - Historical P/E ratios
 - Recent news articles
 
-For EACH company, do the following:
-1. Carefully review Revenue, Net Income, Debt, P/E, and P/B trends.
-2. Identify at least one PRO and one CON affecting the long-term investment thesis.
-3. Weigh the evidence and recommend one of:
-    - BUY (strong fundamentals and/or strong positive momentum)
-    - WAIT (uncertain fundamentals or expensive valuation)
-    - AVOID (declining fundamentals, negative sentiment)
-4. Output a table with 4 columns:
-| Ticker | Recommendation | Confidence (High/Medium/Low) | Reason |
+For EACH company:
+1. Review Revenue, Net Income, Debt, P/E, P/B trends, and recent news sentiment.
+2. Identify exactly one PRO and one CON (short ~25 words each).
+3. Weigh the evidence and:
+    - Make a recommendation: BUY / WAIT / AVOID
+    - Give a confidence level: High / Medium / Low
+4. Write a brief overall summary (30–50 words) that justifies the recommendation considering both PRO and CON.
+5. Return a structured JSON object with:
+    - ticker (string)
+    - recommendation (BUY, WAIT, AVOID)
+    - confidence (High, Medium, Low)
+    - pro (string)
+    - con (string)
+    - summary (string)
 
-Be concise but insightful. Base your reasoning on tangible financials and news data.
+Respond STRICTLY in JSON format using the provided function schema. Do not add any extra text.
 """
 
-def ask_chatgpt(data:dict) -> str:
-    openai.api_key = os.getenv("OPENAI_API_KEY")
-    if not openai.api_key:
-        raise RuntimeError("OpenAI api key missing")
+
+# Schema / Tool definition
+TOOLS = [
+    {
+        "type": "function",
+        "function": {
+            "name": "return_recommendations",
+            "description": "Return stock recommendations for long-term investing",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "recommendations": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "ticker": {"type": "string"},
+                                "recommendation": {
+                                    "type": "string",
+                                    "enum": ["BUY", "WAIT", "AVOID"]
+                                },
+                                "confidence": {
+                                    "type": "string",
+                                    "enum": ["High", "Medium", "Low"]
+                                },
+                                "pro": {"type": "string"},
+                                "con": {"type": "string"},
+                                "summary": {"type": "string"}
+                            },
+                            "required": ["ticker", "recommendation", "confidence", "pro", "con", "summary"]
+                        }
+                    }
+                },
+                "required": ["recommendations"]
+            }
+        }
+    }
+]
+
+def ask_chatgpt(data: dict) -> dict:
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("OpenAI API key missing")
+
+    client = OpenAI(api_key=api_key)
 
     user_prompt = (
-        "Here is the JSON data containing financials and news:\n\n"
-        + json.dumps(data, indent=2)
-        + "\n\nPlease analyze each stock individually and generate the table."
+            "Analyze the following JSON data for each stock individually:\n\n"
+            + json.dumps(data, indent=2)
     )
 
-    response = openai.chat.completions.create(
+    response = client.chat.completions.create(
         model="gpt-4o",
-        messages= [
+        messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content":user_prompt}
+            {"role": "user", "content": user_prompt}
         ],
-        # Low temperature leads to more predictable response
+        tools=TOOLS,
+        tool_choice={"type": "function", "function": {"name": "return_recommendations"}},
         temperature=0.1,
     )
 
-    return response.choices[0].message.content.strip()
+    # Extract the output
+    tool_calls = response.choices[0].message.tool_calls
+    function_args = tool_calls[0].function.arguments
+    parsed_json = json.loads(function_args)
+
+    return parsed_json
