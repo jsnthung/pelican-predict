@@ -88,14 +88,13 @@ def ask_chatgpt(data: dict) -> dict:
     )
 
     response = client.chat.completions.create(
-        model="gpt-4o",
+        model="o3",
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_prompt}
         ],
         tools=TOOLS,
         tool_choice={"type": "function", "function": {"name": "return_recommendations"}},
-        temperature=0.1,
     )
 
     # Extract the output
