@@ -6,3 +6,4 @@ tabulate
 requests
 torch
 transformers
+python-dotenv
