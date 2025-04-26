@@ -1,9 +1,15 @@
-import { Button } from "@/components/ui/button";
+import React from "react";
+import CandlestickChart from "./lib/components/CandlestickChart";
 
 function App() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-svh">
-      <Button>Click me</Button>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <CandlestickChart />
     </div>
   );
 }
