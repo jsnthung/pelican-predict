@@ -14,6 +14,9 @@ from dotenv import load_dotenv
 env_path = Path(__file__).parent.parent / '.env'
 load_dotenv(dotenv_path=env_path)
 
+# silence unecessary pd warnings
+pd.set_option('future.no_silent_downcasting', True)
+
 YEARS_OF_FINANCIALS = 4
 NEWS_LIMIT = 15
 
@@ -21,8 +24,11 @@ def fetch_fundamentals(ticker:str) -> Dict[str, Dict]:
     tk = yf.Ticker(ticker)
 
     # Get financial statements (Income statement & balance sheet)
-    inc = tk.income_stmt.T.head(YEARS_OF_FINANCIALS).fillna(0).astype(float)
-    bal = tk.balance_sheet.T.head(YEARS_OF_FINANCIALS).fillna(0).astype(float)
+    inc = tk.income_stmt.T.head(YEARS_OF_FINANCIALS)
+    inc = inc.fillna(0).infer_objects(copy=False)
+
+    bal = tk.balance_sheet.T.head(YEARS_OF_FINANCIALS)
+    bal = bal.fillna(0).infer_objects(copy=False)
 
     # Select only the important rows
     inc_cols = [col for col in [
