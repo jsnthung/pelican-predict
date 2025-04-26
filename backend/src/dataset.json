@@ -45,9 +45,37 @@
       "currentPBV": 47.156376,
       "bookValueHistory": {},
       "historicalPE": {
-        "2024-09-30": 37.25850269925309,
-        "2022-09-30": 20.528386849127156,
-        "2021-09-30": 22.032404101602108
+        "2024-09-30": 37.258500253884584,
+        "2022-09-30": 20.52838914584231,
+        "2021-09-30": 22.032399259627827
+      },
+      "margins": {
+        "2024-09-30": {
+          "grossMargin": 0.4620634981523393,
+          "operatingMargin": 0.31510222870075566,
+          "netMargin": 0.23971255769943867
+        },
+        "2023-09-30": {
+          "grossMargin": 0.4413112957720756,
+          "operatingMargin": 0.2982141226502472,
+          "netMargin": 0.2530623426432028
+        },
+        "2022-09-30": {
+          "grossMargin": 0.43309630561360085,
+          "operatingMargin": 0.30288744395528594,
+          "netMargin": 0.2530964070519973
+        },
+        "2021-09-30": {
+          "grossMargin": 0.4177935962516778,
+          "operatingMargin": 0.29782377527561593,
+          "netMargin": 0.2588179335569424
+        }
+      },
+      "debtToEquityHistory": {
+        "2024-09-30": null,
+        "2023-09-30": null,
+        "2022-09-30": null,
+        "2021-09-30": null
       }
     },
     "news": [
@@ -176,9 +204,42 @@
       "historicalPE": {
         "2024-12-31": 182.4337271535052,
         "2021-12-31": 205.39742958991448
+      },
+      "margins": {
+        "2024-12-31": {
+          "grossMargin": 0.17862626676220697,
+          "operatingMargin": 0.07943494728221927,
+          "netMargin": 0.07298597604667827
+        },
+        "2023-12-31": {
+          "grossMargin": 0.18248891736331416,
+          "operatingMargin": 0.0918747997891974,
+          "netMargin": 0.15499157822946483
+        },
+        "2022-12-31": {
+          "grossMargin": 0.25598438535759005,
+          "operatingMargin": 0.16979696054602145,
+          "netMargin": 0.15446465836831896
+        },
+        "2021-12-31": {
+          "grossMargin": 0.25279155751258753,
+          "operatingMargin": 0.12069189751593185,
+          "netMargin": 0.10263270349107259
+        }
+      },
+      "debtToEquityHistory": {
+        "2024-12-31": null,
+        "2023-12-31": null,
+        "2022-12-31": null,
+        "2021-12-31": null
       }
     },
     "news": [
+      {
+        "headline": "Benzinga Bulls And Bears: Netflix, Novavax, Intel \u2014 And The Market Begins To Bounce Back",
+        "summary": "Benzinga examined the prospects for many investors&#39; favorite stocks over the last week \u2014 here&#39;s a look at some of our top stories.",
+        "url": "https://www.benzinga.com/markets/25/04/45027002/benzinga-bulls-and-bears-netflix-novavax-intel-and-the-market-begins-to-bounce-back"
+      },
       {
         "headline": "Trump Change Of Heart Or Musk Influence? President Once Said He'd Keep Autonomous Vehicles 'From Operating On American Roads'",
         "summary": "President Donald Trump may have had a change of heart about self-driving vehicles.",
@@ -248,11 +309,6 @@
         "headline": "Deutsche Bank Warns Of $800 Billion Corporate Tax Surge, Cuts S&P 500 Outlook Amid Trump Tariff Concerns",
         "summary": "Deutsche Bank has revised its forecast for the S&amp;P 500, attributing the change to potential harm to corporate earnings caused by tariff policies.",
         "url": "https://www.benzinga.com/markets/25/04/45007579/deutsche-bank-warns-of-800-billion-corporate-tax-surge-cuts-sp-500-outlook-amid-trump-tariff-concerns"
-      },
-      {
-        "headline": "Jeff Bezos-Backed Tesla Rival Unveils $20,000 Modular EV Pickup Truck With Customization At The Forefront",
-        "summary": "Slate Auto, backed by Amazon&#39;s Jeff Bezos, unveils modular EV pickup truck with 150-mile range and 1400 lbs hauling capacity.",
-        "url": "https://www.benzinga.com/tech/25/04/45006513/jeff-bezos-backed-tesla-rival-unveils-20000-modular-ev-pickup-truck-with-customization-at-the-forefront"
       }
     ]
   },
@@ -303,9 +359,37 @@
       "bookValueHistory": {},
       "historicalPE": {
         "2025-01-31": 40.19536910135154,
-        "2024-01-31": 50.42658768548387,
-        "2023-01-31": 109.0459059969147,
+        "2024-01-31": 50.426584557842425,
+        "2023-01-31": 109.04591665151742,
         "2022-01-31": 61.15786723707477
+      },
+      "margins": {
+        "2025-01-31": {
+          "grossMargin": 0.7498869705816992,
+          "operatingMargin": 0.6241752683969747,
+          "netMargin": 0.5584802715771244
+        },
+        "2024-01-31": {
+          "grossMargin": 0.7271757329043695,
+          "operatingMargin": 0.5412166376678376,
+          "netMargin": 0.4884934834706674
+        },
+        "2023-01-31": {
+          "grossMargin": 0.5692889449099132,
+          "operatingMargin": 0.20675465262845702,
+          "netMargin": 0.16193371394676356
+        },
+        "2022-01-31": {
+          "grossMargin": 0.6492903321691313,
+          "operatingMargin": 0.3730772088875678,
+          "netMargin": 0.3623393029649996
+        }
+      },
+      "debtToEquityHistory": {
+        "2025-01-31": null,
+        "2024-01-31": null,
+        "2023-01-31": null,
+        "2022-01-31": null
       }
     },
     "news": [
