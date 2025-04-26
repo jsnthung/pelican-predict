@@ -29,8 +29,8 @@ def get_forecast_schema():
                     },
                     "required": ["day", "open", "high", "low", "close", "volume", "trade_count", "vwap"]
                 },
-                "minItems": 7,
-                "maxItems": 7
+                "minItems": 30,
+                "maxItems": 30
             },
             "recommendation": {
                 "type": "string",
@@ -78,14 +78,14 @@ Here is recent stock data:
 
 {stock_bars.to_string(index=False)}
 
-Based on this trend, predict the stock movement for the next 7 days.
-Provide your prediction in the following JSON structure:
+Based on this trend, predict the stock movement for the next 7 days and also provide a reasoning and trading patterns (the beginning and end date of the detected pattern) that supports your prediction.
+Provide your prediction and the reasons in the following JSON structure:
 
 {json.dumps(schema, indent=2)}
 
 **Important:** 
 - Ensure all numbers have the correct type (float for prices, int for volume and trade_count).
-- Give exactly 7 forecasted days.
+- Give exactly 30 forecasted days.
 - Only output valid JSON with no additional text outside the JSON.
 """
 
