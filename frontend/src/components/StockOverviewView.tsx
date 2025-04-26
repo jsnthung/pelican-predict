@@ -1,22 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function StockOverview() {
-  const [selectedStock, setSelectedStock] = useState('AAPL');
-  const [position, setPosition] = useState<'short' | 'long'>('long');
+type StockOverviewViewProps = {
+  selectedStock: string;
+  position: 'short' | 'long';
+  onStockChange: (stock: string) => void;
+  onPositionChange: (position: 'short' | 'long') => void;
+};
 
+function StockOverviewView({
+  selectedStock,
+  position,
+  onStockChange,
+  onPositionChange,
+}: StockOverviewViewProps) {
   return (
-    <div className="p-6 space-y-6">
+    <div className="w-full max-w-5xl mx-auto p-4">
       
       {/* Top controls */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center gap-x-4">
         {/* Stock Dropdown */}
         <select
           value={selectedStock}
-          onChange={(e) => setSelectedStock(e.target.value)}
+          onChange={(e) => onStockChange(e.target.value)}
           className="border border-gray-300 rounded px-4 py-2"
         >
           <option value="AAPL">AAPL</option>
-          <option value="NVDA">NVDA</option>
+          <option value="GOOG">GOOG</option>
           <option value="TSLA">TSLA</option>
         </select>
 
@@ -24,13 +33,13 @@ function StockOverview() {
         <div className="flex border border-gray-300 rounded overflow-hidden">
           <button
             className={`px-4 py-2 ${position === 'short' ? 'bg-gray-300' : ''}`}
-            onClick={() => setPosition('short')}
+            onClick={() => onPositionChange('short')}
           >
             Short
           </button>
           <button
             className={`px-4 py-2 ${position === 'long' ? 'bg-gray-300' : ''}`}
-            onClick={() => setPosition('long')}
+            onClick={() => onPositionChange('long')}
           >
             Long
           </button>
@@ -63,4 +72,4 @@ function StockOverview() {
   );
 }
 
-export default StockOverview;
+export default StockOverviewView;

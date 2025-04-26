@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import StockOverview from "@/components/StockOverview";
+import StockOverview from "@/containers/StockOverview";
 import { useState } from "react";
 
 function App() {
