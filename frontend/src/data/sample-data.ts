@@ -1,0 +1,41 @@
+import { CandlestickDataPoint } from "@/lib/types";
+
+export const sampleData: CandlestickDataPoint[] = [
+  { x: new Date("2023-01-01").getTime(), o: 100, h: 110, l: 90, c: 105 },
+  { x: new Date("2023-01-02").getTime(), o: 105, h: 115, l: 95, c: 100 },
+  { x: new Date("2023-01-03").getTime(), o: 100, h: 120, l: 85, c: 110 },
+  { x: new Date("2023-01-04").getTime(), o: 110, h: 130, l: 105, c: 125 },
+];
+
+export const generatedSampleData = [
+  { x: new Date("2024-04-01").getTime(), o: 192, h: 210, l: 186, c: 196 },
+  { x: new Date("2024-04-02").getTime(), o: 196, h: 204, l: 150, c: 165 },
+  { x: new Date("2024-04-03").getTime(), o: 165, h: 200, l: 142, c: 199 },
+  { x: new Date("2024-04-04").getTime(), o: 199, h: 216, l: 195, c: 205 },
+  { x: new Date("2024-04-05").getTime(), o: 205, h: 206, l: 199, c: 202 },
+  { x: new Date("2024-04-06").getTime(), o: 202, h: 210, l: 199, c: 199 },
+  { x: new Date("2024-04-07").getTime(), o: 199, h: 214, l: 191, c: 196 },
+  { x: new Date("2024-04-08").getTime(), o: 196, h: 213, l: 179, c: 191 },
+  { x: new Date("2024-04-09").getTime(), o: 191, h: 211, l: 190, c: 206 },
+  { x: new Date("2024-04-10").getTime(), o: 206, h: 211, l: 187, c: 196 },
+  { x: new Date("2024-04-11").getTime(), o: 196, h: 197, l: 185, c: 197 },
+  { x: new Date("2024-04-12").getTime(), o: 197, h: 206, l: 179, c: 185 },
+  { x: new Date("2024-04-13").getTime(), o: 185, h: 194, l: 167, c: 194 },
+  { x: new Date("2024-04-14").getTime(), o: 194, h: 213, l: 182, c: 195 },
+  { x: new Date("2024-04-15").getTime(), o: 195, h: 204, l: 180, c: 204 },
+  { x: new Date("2024-04-16").getTime(), o: 204, h: 216, l: 194, c: 201 },
+  { x: new Date("2024-04-17").getTime(), o: 201, h: 212, l: 191, c: 200 },
+  { x: new Date("2024-04-18").getTime(), o: 200, h: 218, l: 198, c: 204 },
+  { x: new Date("2024-04-19").getTime(), o: 204, h: 205, l: 189, c: 199 },
+  { x: new Date("2024-04-20").getTime(), o: 199, h: 219, l: 184, c: 195 },
+  { x: new Date("2024-04-21").getTime(), o: 195, h: 212, l: 175, c: 177 },
+  { x: new Date("2024-04-22").getTime(), o: 177, h: 187, l: 162, c: 164 },
+  { x: new Date("2024-04-23").getTime(), o: 164, h: 170, l: 156, c: 156 },
+  { x: new Date("2024-04-24").getTime(), o: 156, h: 159, l: 147, c: 150 },
+  { x: new Date("2024-04-25").getTime(), o: 150, h: 154, l: 136, c: 154 },
+  { x: new Date("2024-04-26").getTime(), o: 154, h: 172, l: 143, c: 152 },
+  { x: new Date("2024-04-27").getTime(), o: 152, h: 157, l: 139, c: 147 },
+  { x: new Date("2024-04-28").getTime(), o: 147, h: 153, l: 128, c: 148 },
+  { x: new Date("2024-04-29").getTime(), o: 148, h: 158, l: 143, c: 143 },
+  { x: new Date("2024-04-30").getTime(), o: 143, h: 153, l: 142, c: 147 },
+];
