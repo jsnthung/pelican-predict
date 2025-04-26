@@ -18,14 +18,14 @@ def get_forecast_schema():
                 "items": {
                     "type": "object",
                     "properties": {
-                        "day": {"type": "string"},
-                        "open": {"type": "number"},
-                        "high": {"type": "number"},
-                        "low": {"type": "number"},
-                        "close": {"type": "number"},
-                        "volume": {"type": "integer"},
-                        "trade_count": {"type": "integer"},
-                        "vwap": {"type": "number"}
+                        "day": {"type": "string", "description": "Date in YYYY-MM-DD format"},
+                        "open": {"type": "number", "description": "Opening price"},
+                        "high": {"type": "number", "description": "Highest price"},
+                        "low": {"type": "number", "description": "Lowest price"},
+                        "close": {"type": "number", "description": "Closing price"},
+                        "volume": {"type": "integer", "description": "Volume of shares traded"},
+                        "trade_count": {"type": "integer", "description": "Number of trades"},
+                        "vwap": {"type": "number", "description": "Volume Weighted Average Price"}
                     },
                     "required": ["day", "open", "high", "low", "close", "volume", "trade_count", "vwap"]
                 },
@@ -44,7 +44,7 @@ def get_forecast_schema():
             "reasoning": {"type": "string"},
             "detected_patterns": {
                 "type": "array",
-                "description": "Detected trading patterns from recent stock data",
+                "description": "Detected trading patterns from recent stock data. Only return value based on the data.",
                 "items": {
                     "type": "object",
                     "properties": {
@@ -55,10 +55,11 @@ def get_forecast_schema():
                                 "type": "object",
                                 "properties": {
                                     "type": {"type": "string", "enum": ["high", "low"]},
-                                    "day": {"type": "string"},
-                                    "price": {"type": "number"}
+                                    "day": {"type": "string", "description": "Date in YYYY-MM-DD format"},
+                                    "high": {"type": "number", "description": "High price"},
+                                    "low": {"type": "number", "description": "Low price"},
                                 },
-                                "required": ["type", "day", "price"]
+                                "required": ["type", "day", "high", "low"]
                             }
                         }
                     },
@@ -99,7 +100,7 @@ def get_stock_forecast(openai_client, prompt):
             "type": "function",
             "function": {
                 "name": "generate_stock_forecast",
-                "description": "Predict stock data for the next 7 days based on historical trends.",
+                "description": "Predict stock data for the next 7 days based on historical trends, provide a recommendation (buy/sell/hold) and confidence level, and detect any trading patterns.",
                 "parameters": get_forecast_schema()
             }
         }],
