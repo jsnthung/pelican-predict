@@ -17,7 +17,8 @@ client = MongoClient(
     tlsAllowInvalidCertificates=True
 )
 db = client["PeliCanStonks"]
-collection = db["fundamental_analysis"]
+analysis_collection = db["fundamental_analysis"]
+reports_collection = db["financial_reports"]
 
 def test_mongo_connection():
     try:
@@ -26,23 +27,40 @@ def test_mongo_connection():
     except Exception as e:
         print("❌ MongoDB connection failed:", e)
 
-def save_to_mongo(result: dict):
-    collection.create_index("timestamp")
-    stocks = {}
+def save_to_mongo(dataset: dict, result: dict):
+    timestamp_now = datetime.now()
+
+    # --- Prepare financial_reports document ---
+    financial_stocks = {}
+    for ticker, data in dataset.items():
+        financial_stocks[ticker] = {
+            "fundamentals": data["fundamentals"],
+            "news": data["news"]
+        }
+
+    reports_document = {
+        "timestamp": timestamp_now,
+        "stocks": financial_stocks
+    }
+    reports_collection.insert_one(reports_document)
+    print("✅ Saved raw dataset to 'financial_reports' collection.")
+
+    # --- Prepare fundamental_analysis document ---
+    analysis_stocks = {}
     for item in result["recommendations"]:
         ticker = item["ticker"]
-        stocks[ticker] = {
+        analysis_stocks[ticker] = {
             "recommendation": item["recommendation"],
             "confidence": item["confidence"],
             "pro": item["pro"],
             "con": item["con"],
-            "summary": item["summary"],
+            "summary": item["summary"]
         }
 
-    document = {
-        "timestamp": datetime.now(),
-        "stocks": stocks
+    analysis_document = {
+        "timestamp": timestamp_now,
+        "stocks": analysis_stocks
     }
+    analysis_collection.insert_one(analysis_document)
+    print("✅ Saved structured analysis to 'fundamental_analysis' collection.")
 
-    collection.insert_one(document)
-    print("✅ Successfully saved structured result to MongoDB.")
