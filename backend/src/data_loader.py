@@ -48,45 +48,81 @@ def fetch_fundamentals(ticker:str) -> Dict[str, Dict]:
     inc_trimmed = inc[inc_cols].rename_axis("FiscalYear").astype(float).to_dict()
     bal_trimmed = bal[bal_cols].rename_axis("FiscalYear").astype(float).to_dict()
 
-    # Calculate Historical Book Values = Total Assets - Total Liabilities
-    try:
-        book_values = (bal["Total Assets"] - bal["Total Liab"]).to_dict()
-    except Exception:
-        book_values = {}
-
-    # Calculate historical P/E Ratios
-    try:
-        hist_prices = tk.history(period="5y", interval="1d")["Close"]
-
-        # Estimate shares outstanding (assuming stable)
-        shares_outstanding = tk.info.get("sharesOutstanding", None)
-
-        hist_pe = {}
-
-        if shares_outstanding:
-            for fiscal_date in inc.index:
-                fiscal_date_str = fiscal_date.strftime("%Y-%m-%d")
-
-                # Find closest available price before fiscal year end
-                price = hist_prices[:fiscal_date_str].iloc[-1] if fiscal_date_str in hist_prices.index else None
-
-                net_income = inc.at[fiscal_date, "Net Income"] if "Net Income" in inc.columns else None
-
-                if price and net_income:
-                    eps = net_income / shares_outstanding
-                    pe = price / eps if eps != 0 else None
-                    hist_pe[fiscal_date_str] = pe
-    except Exception:
-        hist_pe = {}
+    # Calculations using helper functions
+    book_values = calculate_book_values(bal)
+    hist_pe = calculate_historical_pe(inc, tk)
+    margins = calculate_margins(inc)
+    debt_to_equity = calculate_debt_to_equity(bal)
 
     return {
         "income": inc_trimmed,
         "balance": bal_trimmed,
         "trailingPE": tk.info.get("trailingPE"),
         "currentPBV": tk.info.get("priceToBook"),
-        "bookValueHistory":book_values,
+        "bookValueHistory": book_values,
         "historicalPE": hist_pe,
+        "margins": margins,
+        "debtToEquityHistory": debt_to_equity,
     }
+
+def calculate_book_values(bal):
+    try:
+        return (bal["Total Assets"] - bal["Total Liab"]).to_dict()
+    except Exception:
+        return {}
+
+def calculate_historical_pe(inc, tk):
+    try:
+        hist_prices = tk.history(period="5y", interval="1d")["Close"]
+        shares_outstanding = tk.info.get("sharesOutstanding", None)
+
+        hist_pe = {}
+        if shares_outstanding:
+            for fiscal_date in inc.index:
+                fiscal_date_str = fiscal_date.strftime("%Y-%m-%d")
+                price = hist_prices[:fiscal_date_str].iloc[-1] if fiscal_date_str in hist_prices.index else None
+                net_income = inc.at[fiscal_date, "Net Income"] if "Net Income" in inc.columns else None
+
+                if price and net_income:
+                    eps = net_income / shares_outstanding
+                    pe = price / eps if eps != 0 else None
+                    hist_pe[fiscal_date_str] = pe
+        return hist_pe
+    except Exception:
+        return {}
+
+def calculate_margins(inc):
+    margins = {}
+    try:
+        for fiscal_date in inc.index:
+            revenue = inc.at[fiscal_date, "Total Revenue"]
+            gross_profit = inc.at[fiscal_date, "Gross Profit"]
+            operating_income = inc.at[fiscal_date, "Operating Income"]
+            net_income = inc.at[fiscal_date, "Net Income"]
+
+            margins[fiscal_date.strftime("%Y-%m-%d")] = {
+                "grossMargin": gross_profit / revenue if revenue else None,
+                "operatingMargin": operating_income / revenue if revenue else None,
+                "netMargin": net_income / revenue if revenue else None,
+            }
+    except Exception:
+        pass
+    return margins
+
+def calculate_debt_to_equity(bal):
+    debt_to_equity = {}
+    try:
+        for fiscal_date in bal.index:
+            total_debt = bal.at[fiscal_date, "Total Debt"] if "Total Debt" in bal.columns else 0
+            equity = bal.at[fiscal_date, "Total Stockholder Equity"] if "Total Stockholder Equity" in bal.columns else 0
+
+            debt_to_equity[fiscal_date.strftime("%Y-%m-%d")] = (
+                total_debt / equity if equity else None
+            )
+    except Exception:
+        pass
+    return debt_to_equity
+
 
 def convert_fundamentals_to_JSON(raw_data: dict) -> dict:
     def clean_value(val):
