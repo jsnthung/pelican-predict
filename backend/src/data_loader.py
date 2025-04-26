@@ -3,6 +3,7 @@ from typing import Dict,List
 
 import yfinance as yf
 import pandas as pd
+import numpy as np
 from alpaca.data.historical.news import NewsClient
 from alpaca.data.requests import NewsRequest
 
@@ -73,3 +74,16 @@ def fetch_fundamentals(ticker:str) -> Dict[str, Dict]:
         "bookValueHistory":book_values,
         "historicalPE": hist_pe,
     }
+
+def convert_fundamentals_to_JSON(raw_data: dict) -> dict:
+    def clean_value(val):
+        if isinstance(val, (np.float64, np.float32, np.int64, np.int32)):
+            return float(val)
+        if isinstance(val, (pd.Timestamp,)):
+            return val.strftime("%Y-%m-%d")
+        if isinstance(val, dict):
+            return {clean_value(k): clean_value(v) for k, v in val.items()}
+        return val
+
+    return {k: clean_value(v) for k, v in raw_data.items()}
+
