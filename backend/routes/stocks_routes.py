@@ -32,4 +32,33 @@ async def get_financial_reports():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching financial reports: {str(e)}")
     finally:
+        mongodb.disconnect()
+
+@router.get("/fundamental-analysis", response_model=Optional[Dict[str, Any]])
+async def get_fundamental_analysis():
+    """
+    Get the most recent fundamental analysis from the database
+    """
+    try:
+        mongodb.connect()
+        # Fetch the latest document by sorting on timestamp in descending order
+        # and limiting to 1 result
+        collection = mongodb.get_collection("fundamental_analysis")
+        latest_analysis = collection.find().sort("timestamp", -1).limit(1)
+        
+        # Convert cursor to list and get the first (and only) item if it exists
+        analysis_list = list(latest_analysis)
+        if not analysis_list:
+            return None
+            
+        analysis = analysis_list[0]
+        
+        # Convert ObjectId to string for JSON serialization
+        if "_id" in analysis:
+            analysis["_id"] = str(analysis["_id"])
+                
+        return analysis
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching fundamental analysis: {str(e)}")
+    finally:
         mongodb.disconnect() 
