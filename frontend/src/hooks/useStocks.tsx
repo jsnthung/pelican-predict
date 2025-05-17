@@ -1,10 +1,19 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+interface NewsItem {
+  headline: string;
+  summary: string;
+  url: string;
+}
+
 interface FinancialReport {
   _id: string;
   timestamp: string;
-  stocks: Record<string, any>;
+  stocks: Record<string, {
+    fundamentals: any;
+    news: NewsItem[];
+  }>;
 }
 
 interface FundamentalAnalysis {

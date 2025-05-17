@@ -1,5 +1,6 @@
 import GraphContainer from './GraphContainer';
 import ReasonContainer from './ReasonContainer';
+import NewsCard from './NewsCard';
 import { useStocks } from '../hooks/useStocks';
 
 type StockOverviewViewProps = {
@@ -7,11 +8,18 @@ type StockOverviewViewProps = {
   onStockChange: (stock: string) => void;
 };
 
+interface NewsItem {
+  headline: string;
+  summary: string;
+  url: string;
+}
+
 function StockOverviewView({ selectedStock, onStockChange }: StockOverviewViewProps) {
   const { report, analysis, loading, error, stockTickers, getStockData, getStockAnalysis } = useStocks();
   
   const stockData = getStockData(selectedStock);
   const fundamentals = stockData?.fundamentals;
+  const news = stockData?.news || [];
   const stockAnalysis = getStockAnalysis(selectedStock);
   
   // Format large numbers for display
@@ -84,7 +92,7 @@ function StockOverviewView({ selectedStock, onStockChange }: StockOverviewViewPr
                   </div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-gray-400">Confidence:</span>
-                    <span className="font-semibold">{stockAnalysis.confidence}%</span>
+                    <span className="font-semibold">{stockAnalysis.confidence}</span>
                   </div>
                 </div>
                 <div className="mb-4">
@@ -185,6 +193,23 @@ function StockOverviewView({ selectedStock, onStockChange }: StockOverviewViewPr
           </>
         )}
       </div>
+
+      {/* News Section */}
+      {news.length > 0 && (
+        <div className="w-full max-w-5xl space-y-6">
+          <h1 className="text-2xl font-bold">Latest News</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {news.map((item: NewsItem, index: number) => (
+              <NewsCard 
+                key={index}
+                headline={item.headline}
+                summary={item.summary}
+                url={item.url}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
