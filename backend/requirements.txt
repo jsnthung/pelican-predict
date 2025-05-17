@@ -8,3 +8,5 @@ torch
 transformers
 python-dotenv
 pymongo
+matplotlib
+jupyter
