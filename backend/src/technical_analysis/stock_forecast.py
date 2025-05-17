@@ -14,7 +14,7 @@ def get_forecast_schema():
         "properties": {
             "weekly_forecast": {
                 "type": "array",
-                "description": "Predicted stock data for the next 7 days",
+                "description": "Predicted stock data for the next 30 days",
                 "items": {
                     "type": "object",
                     "properties": {
@@ -78,7 +78,7 @@ Here is recent stock data:
 
 {stock_bars.to_string(index=False)}
 
-Based on this trend, predict the stock movement for the next 7 days and also provide a reasoning and trading patterns (the beginning and end date of the detected pattern) that supports your prediction.
+Based on this trend, predict the stock movement for the next 30 days and also provide a reasoning and trading patterns (the beginning and end date of the detected pattern) that supports your prediction.
 Provide your prediction and the reasons in the following JSON structure:
 
 {json.dumps(schema, indent=2)}
@@ -100,7 +100,7 @@ def get_stock_forecast(openai_client, prompt):
             "type": "function",
             "function": {
                 "name": "generate_stock_forecast",
-                "description": "Predict stock data for the next 7 days based on historical trends, provide a recommendation (buy/sell/hold) and confidence level, and detect any trading patterns.",
+                "description": "Predict stock data for the next 30 days based on historical trends, provide a recommendation (buy/sell/hold) and confidence level, and detect any trading patterns.",
                 "parameters": get_forecast_schema()
             }
         }],
