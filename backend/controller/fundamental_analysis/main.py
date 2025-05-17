@@ -1,5 +1,5 @@
 from data_loader import fetch_fundamentals, fetch_news, convert_fundamentals_to_JSON
-from chatgpt_client import ask_chatgpt
+from gemini_client import ask_gemini
 from mongo_client import save_to_mongo, test_mongo_connection
 import json
 
@@ -26,10 +26,10 @@ def main():
     with open("dataset.json", "w") as f:
         json.dump(dataset, f, indent=2)
 
-    print("Sending data to ChatGPT for analysis...\n")
-    result = ask_chatgpt(dataset)
+    print("Sending data to Gemini for analysis...\n")
+    result = ask_gemini(dataset)
 
-    # print(json.dumps(result, indent=2))
+    print(json.dumps(result, indent=2))
 
     save_to_mongo(dataset, result)
 

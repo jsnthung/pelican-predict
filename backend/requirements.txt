@@ -1,4 +1,5 @@
-openai
+google-generativeai
+# openai (deprecated, switching to google-generativeai)
 alpaca-py
 yfinance
 pandas
@@ -27,8 +28,8 @@ idna==3.10
 jiter==0.9.0
 lxml==5.4.0
 mcp==1.6.0
-openai==1.76.0
-openai-agents==0.0.13
+# openai==1.76.0
+# openai-agents==0.0.13
 primp==0.15.0
 pydantic==2.11.3
 pydantic-settings==2.9.1

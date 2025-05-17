@@ -1,7 +1,6 @@
 import GraphContainer from './GraphContainer';
 import ReasonContainer from './ReasonContainer';
 import NewsCard from './NewsCard';
-import TechnicalAnalysisView from './TechnicalAnalysisView';
 import { useStocks } from '../hooks/useStocks';
 
 type StockOverviewViewProps = {
@@ -16,7 +15,7 @@ interface NewsItem {
 }
 
 function StockOverviewView({ selectedStock, onStockChange }: StockOverviewViewProps) {
-  const { report, analysis, technicalAnalysis, loading, error, stockTickers, getStockData, getStockAnalysis } = useStocks();
+  const { report, analysis, loading, error, stockTickers, getStockData, getStockAnalysis } = useStocks();
   
   const stockData = getStockData(selectedStock);
   const fundamentals = stockData?.fundamentals;
@@ -52,27 +51,11 @@ function StockOverviewView({ selectedStock, onStockChange }: StockOverviewViewPr
 
       {/* Graph Section */}
       <div className="w-full max-w-5xl space-y-6">
-        <h1 className="text-2xl font-bold">Technical Analysis:</h1>
+      <h1 className="text-2xl font-bold">Technical Analysis:</h1>
         <GraphContainer stock={selectedStock} />
-        
-        {/* Technical Analysis */}
-        {loading ? (
-          <div className="w-full h-32 bg-gray-800 rounded-lg flex items-center justify-center">
-            <p className="text-gray-300 font-semibold">Loading technical analysis...</p>
-          </div>
-        ) : error ? (
-          <div className="w-full h-32 bg-gray-800 rounded-lg flex items-center justify-center">
-            <p className="text-gray-300 font-semibold">Error loading data: {error}</p>
-          </div>
-        ) : technicalAnalysis ? (
-          <TechnicalAnalysisView
-            recommendation={technicalAnalysis.forecast.recommendation}
-            confidenceLevel={technicalAnalysis.forecast.confidence_level}
-            reasoning={technicalAnalysis.forecast.reasoning}
-          />
-        ) : (
-          <ReasonContainer title="Reasoning for Graph" reason="Technical analysis data not available" />
-        )}
+        {/* Reasoning for Graph */}
+        <ReasonContainer title="Reasoning for Graph" reason="reason parameter graph" />
+    
       </div>
 
       {/* Table Section */}

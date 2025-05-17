@@ -5,12 +5,13 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 # Load .env
-env_path = Path(__file__).parent.parent / '.env'
+env_path = Path(__file__).parent.parent.parent / '.env'  # Changed to go up two directories to reach /backend
+print(f"Looking for .env file at: {env_path}")
 load_dotenv(dotenv_path=env_path)
 
 MONGO_URI = os.getenv("MONGO_URI")
 if not MONGO_URI:
-    raise RuntimeError("MONGO_URI not set in .env!")
+    raise RuntimeError(f"MONGO_URI not set in .env file at {env_path}!")
 
 client = MongoClient(
     MONGO_URI,

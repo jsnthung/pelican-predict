@@ -28,41 +28,26 @@ interface FundamentalAnalysis {
   }>;
 }
 
-interface TechnicalAnalysis {
-  _id: string;
-  timestamp: string;
-  forecast: {
-    recommendation: string;
-    confidence_level: number;
-    reasoning: string;
-    weekly_forecast: any[];
-    detected_patterns: any[];
-  };
-}
-
 // API URL
 const API_URL = 'http://localhost:8000';
 
 export const useStocks = () => {
   const [report, setReport] = useState<FinancialReport | null>(null);
   const [analysis, setAnalysis] = useState<FundamentalAnalysis | null>(null);
-  const [technicalAnalysis, setTechnicalAnalysis] = useState<TechnicalAnalysis | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
     try {
       setLoading(true);
-      // Fetch all data sources in parallel
-      const [reportResponse, analysisResponse, techResponse] = await Promise.all([
+      // Fetch both data sources in parallel
+      const [reportResponse, analysisResponse] = await Promise.all([
         axios.get<FinancialReport>(`${API_URL}/stocks/financial-reports`),
-        axios.get<FundamentalAnalysis>(`${API_URL}/stocks/fundamental-analysis`),
-        axios.get<TechnicalAnalysis>(`${API_URL}/stocks/technical-analysis`)
+        axios.get<FundamentalAnalysis>(`${API_URL}/stocks/fundamental-analysis`)
       ]);
       
       setReport(reportResponse.data);
       setAnalysis(analysisResponse.data);
-      setTechnicalAnalysis(techResponse.data);
       setError(null);
     } catch (err) {
       console.error('Error fetching stock data:', err);
@@ -88,7 +73,6 @@ export const useStocks = () => {
   return {
     report,
     analysis,
-    technicalAnalysis,
     loading,
     error,
     refreshData: fetchData,
