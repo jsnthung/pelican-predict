@@ -7,7 +7,7 @@ import os
 
 load_dotenv()
 
-uri = os.getenv("MONGO_URI"),
+uri = os.getenv("MONGO_URI")
 client = MongoClient(uri, server_api=ServerApi('1'))
 
 db = client["PeliCanStonks"]
