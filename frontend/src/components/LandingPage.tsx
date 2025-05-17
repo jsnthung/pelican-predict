@@ -23,7 +23,7 @@ export default function LandingPage() {
 
       {/* Navigation Button */}
       <button
-        onClick={() => navigate("/stocks")}
+        onClick={() => navigate("/stock-overview")}
         className="px-6 py-3 bg-white text-black rounded-lg font-medium hover:bg-gray-200 transition"
       >
         View Stocks
