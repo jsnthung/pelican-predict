@@ -64,12 +64,16 @@ function GraphContainer({ stock, history }: { stock: string, history: any[] }) {
 
       {/* Chart */}
       <div className="w-full flex items-center justify-center">
-        <EchartsCandlestickChart 
-          days={days}
-          data={mappedHistory}
-          showPrediction={showPrediction}
-          predictionDays={7}
-        />
+        {mappedHistory.length === 0 ? (
+          <div className="text-gray-300 text-lg py-12">Loading historical data...</div>
+        ) : (
+          <EchartsCandlestickChart 
+            days={days}
+            data={mappedHistory}
+            showPrediction={showPrediction}
+            predictionDays={7}
+          />
+        )}
       </div>
     </div>
   );
