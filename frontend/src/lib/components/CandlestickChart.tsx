@@ -27,7 +27,7 @@ const CandlestickChart: React.FC = () => {
       datasets: [
         {
           label: "Candlestick Chart",
-          data: sampleData2,
+          data: generatedSampleData,
           barThickness: 8,
         },
       ],
