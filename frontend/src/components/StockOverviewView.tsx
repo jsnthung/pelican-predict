@@ -34,7 +34,7 @@ function StockOverviewView({ selectedStock, onStockChange }: StockOverviewViewPr
   const stockAnalysis = getStockAnalysis(selectedStock);
   const stockForecast = getStockForecast(selectedStock);
   const stockHistory = getStockHistory(selectedStock);
-  console.log('StockOverviewView: stockHistory for', selectedStock, stockHistory);
+  // console.log('StockOverviewView: stockHistory for', selectedStock, stockHistory);
   
   // Format large numbers for display
   const formatNumber = (num: number) => {
