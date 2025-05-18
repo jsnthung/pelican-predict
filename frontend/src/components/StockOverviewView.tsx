@@ -24,7 +24,8 @@ function StockOverviewView({ selectedStock, onStockChange }: StockOverviewViewPr
     stockTickers, 
     getStockData, 
     getStockAnalysis,
-    getStockForecast
+    getStockForecast,
+    getStockHistory
   } = useStocks();
   
   const stockData = getStockData(selectedStock);
@@ -32,6 +33,8 @@ function StockOverviewView({ selectedStock, onStockChange }: StockOverviewViewPr
   const news = stockData?.news || [];
   const stockAnalysis = getStockAnalysis(selectedStock);
   const stockForecast = getStockForecast(selectedStock);
+  const stockHistory = getStockHistory(selectedStock);
+  console.log('StockOverviewView: stockHistory for', selectedStock, stockHistory);
   
   // Format large numbers for display
   const formatNumber = (num: number) => {
@@ -98,7 +101,7 @@ function StockOverviewView({ selectedStock, onStockChange }: StockOverviewViewPr
       {/* Graph Section */}
       <div className="w-full max-w-5xl space-y-6">
         <h1 className="text-2xl font-bold">Technical Analysis:</h1>
-        <GraphContainer stock={selectedStock} />
+        <GraphContainer stock={selectedStock} history={stockHistory} />
         {/* Reasoning for Graph */}
         {loading ? (
           <ReasonContainer title="Reasoning for Graph" reason="Loading technical analysis..." />

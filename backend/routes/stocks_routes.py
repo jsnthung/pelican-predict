@@ -157,44 +157,47 @@ async def get_stock_history(symbol: Optional[str] = None):
         mongodb.connect()
         collection = mongodb.get_collection("stonk_history")
         latest_history = collection.find().sort("timestamp", -1).limit(1)
-        
         history_list = list(latest_history)
         if not history_list:
             return None
-            
         history = history_list[0]
-        
         # Convert ObjectId to string for JSON serialization
         if "_id" in history:
             history["_id"] = str(history["_id"])
-            
-        # Handle different data structures
-        if "stocks" in history and isinstance(history["stocks"], dict):
-            # New structure with stocks dictionary
+        # Handle new structure: data is a dict of symbols
+        if "data" in history and isinstance(history["data"], dict):
             if symbol:
-                # Return only the requested symbol
-                if symbol in history["stocks"]:
-                    filtered_data = {
-                        "_id": history["_id"],
-                        "timestamp": history["timestamp"],
-                        "stocks": {
-                            symbol: history["stocks"][symbol]
-                        }
-                    }
-                    return filtered_data
-                else:
-                    return {
-                        "_id": history["_id"],
-                        "timestamp": history["timestamp"],
-                        "stocks": {}
-                    }
-            # If no symbol specified, return all symbols
-            return history
-        elif "data" in history:
-            # Old structure with data list
+                # Return only the requested symbol's array
+                symbol_data = history["data"].get(symbol, [])
+                return {
+                    "_id": history["_id"],
+                    "timestamp": history["timestamp"],
+                    "data": {symbol: symbol_data}
+                }
+            else:
+                # Return all symbols
+                return history
+        # Handle old structure: data is a list
+        elif "data" in history and isinstance(history["data"], list):
             if symbol:
-                history["data"] = [item for item in history["data"] if item.get("symbol") == symbol]
-            return history
+                filtered = [item for item in history["data"] if item.get("symbol") == symbol]
+                return {
+                    "_id": history["_id"],
+                    "timestamp": history["timestamp"],
+                    "data": filtered
+                }
+            else:
+                return history
+        # Handle previous structure: stocks dict
+        elif "stocks" in history and isinstance(history["stocks"], dict):
+            if symbol:
+                return {
+                    "_id": history["_id"],
+                    "timestamp": history["timestamp"],
+                    "stocks": {symbol: history["stocks"].get(symbol, [])}
+                }
+            else:
+                return history
         else:
             # Unknown structure, return as is
             return history

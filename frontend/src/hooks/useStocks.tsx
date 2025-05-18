@@ -137,16 +137,19 @@ export const useStocks = () => {
   // Get historical data for a specific stock ticker
   const getStockHistory = (ticker: string) => {
     if (!history) return [];
-    
-    // Check which structure we're dealing with
+
+    // New structure: data is a dict of symbols
+    if (history.data && typeof history.data === 'object' && !Array.isArray(history.data) && history.data[ticker]) {
+      return history.data[ticker];
+    }
+    // Previous structure: stocks dictionary
     if (history.stocks && history.stocks[ticker]) {
-      // New structure with stocks dictionary
       return history.stocks[ticker];
-    } else if (history.data) {
-      // Old structure with data array
+    }
+    // Old structure: data is an array
+    if (Array.isArray(history.data)) {
       return history.data.filter(item => item.symbol === ticker);
     }
-    
     return [];
   };
 

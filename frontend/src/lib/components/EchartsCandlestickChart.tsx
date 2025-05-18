@@ -8,6 +8,7 @@ interface EchartsCandlestickChartProps {
   volatility?: number;
   showPrediction?: boolean;
   predictionDays?: number;
+  data?: { x: number; o: number; h: number; l: number; c: number }[];
 }
 
 const EchartsCandlestickChart: React.FC<EchartsCandlestickChartProps> = ({
@@ -15,7 +16,8 @@ const EchartsCandlestickChart: React.FC<EchartsCandlestickChartProps> = ({
   startPrice = 200,
   volatility = 3,
   showPrediction = true,
-  predictionDays = 7
+  predictionDays = 7,
+  data
 }) => {
   const chartRef = useRef<HTMLDivElement>(null);
   const chartInstance = useRef<echarts.ECharts | null>(null);
@@ -28,8 +30,8 @@ const EchartsCandlestickChart: React.FC<EchartsCandlestickChartProps> = ({
     chartInstance.current = echarts.init(chartRef.current);
     setIsLoading(false);
 
-    // Generate stock data ending today
-    const stockData = generateStockData(days, startPrice, volatility);
+    // Use real data if provided, otherwise generate mock data
+    let stockData = data && data.length > 0 ? data.slice(-days) : generateStockData(days, startPrice, volatility);
     
     // Generate prediction data if enabled
     let predictionData: StockDataPoint[] = [];
@@ -246,7 +248,7 @@ const EchartsCandlestickChart: React.FC<EchartsCandlestickChartProps> = ({
       window.removeEventListener('resize', resizeHandler);
       chartInstance.current?.dispose();
     };
-  }, [days, startPrice, volatility, showPrediction, predictionDays]);
+  }, [days, startPrice, volatility, showPrediction, predictionDays, data]);
 
   return (
     <div>

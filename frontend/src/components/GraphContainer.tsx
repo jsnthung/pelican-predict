@@ -1,10 +1,19 @@
 import { useState } from 'react';
 import EchartsCandlestickChart from '@/lib/components/EchartsCandlestickChart';
 
-function GraphContainer({ stock }: { stock: string }) {
+function GraphContainer({ stock, history }: { stock: string, history: any[] }) {
   const [position, setPosition] = useState<'short' | 'long'>('long');
   const [days, setDays] = useState(60);
   const [showPrediction, setShowPrediction] = useState(true);
+
+  // Map MongoDB data to chart format expected by EchartsCandlestickChart
+  const mappedHistory = history.map(item => ({
+    x: new Date(item.timestamp).getTime(),
+    o: item.open,
+    h: item.high,
+    l: item.low,
+    c: item.close,
+  }));
 
   return (
     <div className="w-full bg-gray-700 rounded-lg p-4 space-y-4">
@@ -57,8 +66,7 @@ function GraphContainer({ stock }: { stock: string }) {
       <div className="w-full flex items-center justify-center">
         <EchartsCandlestickChart 
           days={days}
-          startPrice={position === 'long' ? 150 : 300} 
-          volatility={position === 'long' ? 10 : 15} 
+          data={mappedHistory}
           showPrediction={showPrediction}
           predictionDays={7}
         />

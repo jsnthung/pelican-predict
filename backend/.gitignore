@@ -9,3 +9,5 @@ __pycache__/
 *.pyz
 *.pywz
 *.cpython-313.pyc
+
+venv/*
