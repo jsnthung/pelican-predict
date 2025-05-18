@@ -11,7 +11,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # load env file since it is one dir above
-env_path = Path(__file__).parent.parent / '.env'
+env_path = Path(__file__).parent.parent.parent / '.env'  # Changed to go up two directories to reach /backend
+print(f"Looking for .env file at: {env_path}")
 load_dotenv(dotenv_path=env_path)
 
 # silence unecessary pd warnings
@@ -144,7 +145,7 @@ def fetch_news(ticker:str) -> list[dict]:
     alpaca_api_secret = os.getenv("ALPACA_API_SECRET_KEY")
 
     if not alpaca_api_key or not alpaca_api_secret:
-        raise RuntimeError("Alpaca API Key missing")
+        raise RuntimeError(f"Alpaca API Keys missing in .env file at {env_path}")
 
     client = NewsClient(api_key=alpaca_api_key, secret_key=alpaca_api_secret)
     start_date = (pd.Timestamp.today() - pd.Timedelta(days=NEWS_LOOKBACK_DAYS)).strftime("%Y-%m-%d")

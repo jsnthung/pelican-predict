@@ -1,0 +1,473 @@
+{
+  "AAPL": {
+    "fundamentals": {
+      "income": {
+        "Total Revenue": {
+          "2024-09-30": 391035000000.0,
+          "2023-09-30": 383285000000.0,
+          "2022-09-30": 394328000000.0,
+          "2021-09-30": 365817000000.0
+        },
+        "Gross Profit": {
+          "2024-09-30": 180683000000.0,
+          "2023-09-30": 169148000000.0,
+          "2022-09-30": 170782000000.0,
+          "2021-09-30": 152836000000.0
+        },
+        "Operating Income": {
+          "2024-09-30": 123216000000.0,
+          "2023-09-30": 114301000000.0,
+          "2022-09-30": 119437000000.0,
+          "2021-09-30": 108949000000.0
+        },
+        "Net Income": {
+          "2024-09-30": 93736000000.0,
+          "2023-09-30": 96995000000.0,
+          "2022-09-30": 99803000000.0,
+          "2021-09-30": 94680000000.0
+        }
+      },
+      "balance": {
+        "Total Assets": {
+          "2024-09-30": 364980000000.0,
+          "2023-09-30": 352583000000.0,
+          "2022-09-30": 352755000000.0,
+          "2021-09-30": 351002000000.0
+        },
+        "Total Debt": {
+          "2024-09-30": 106629000000.0,
+          "2023-09-30": 111088000000.0,
+          "2022-09-30": 132480000000.0,
+          "2021-09-30": 136522000000.0
+        }
+      },
+      "trailingPE": 32.90654,
+      "currentPBV": 47.25117,
+      "bookValueHistory": {},
+      "historicalPE": {
+        "2024-09-30": 36.99593882166404,
+        "2022-09-30": 20.38372442664111,
+        "2021-09-30": 21.87713264655121
+      },
+      "margins": {
+        "2024-09-30": {
+          "grossMargin": 0.4620634981523393,
+          "operatingMargin": 0.31510222870075566,
+          "netMargin": 0.23971255769943867
+        },
+        "2023-09-30": {
+          "grossMargin": 0.4413112957720756,
+          "operatingMargin": 0.2982141226502472,
+          "netMargin": 0.2530623426432028
+        },
+        "2022-09-30": {
+          "grossMargin": 0.43309630561360085,
+          "operatingMargin": 0.30288744395528594,
+          "netMargin": 0.2530964070519973
+        },
+        "2021-09-30": {
+          "grossMargin": 0.4177935962516778,
+          "operatingMargin": 0.29782377527561593,
+          "netMargin": 0.2588179335569424
+        }
+      },
+      "debtToEquityHistory": {
+        "2024-09-30": null,
+        "2023-09-30": null,
+        "2022-09-30": null,
+        "2021-09-30": null
+      }
+    },
+    "news": [
+      {
+        "headline": "iPhones, AI, And Alibaba: Why Apple's China Bet Alarms Donald Trump",
+        "summary": "Apple&#39;s AI partnership with Alibaba for Chinese iPhones faces U.S. backlash over national security and data-sharing concerns.",
+        "url": "https://www.benzinga.com/markets/equities/25/05/45483036/iphones-ai-and-alibaba-why-apples-china-bet-alarms-donald-trump"
+      },
+      {
+        "headline": "Analyst Lowers Target Q1 Forecast Amid Spending Slump, Rising Consumer Tariffs",
+        "summary": "Telsey Advisory Group analyst Joseph Feldman reiterated the Outperform rating on Target Corporation (NYSE:TGT), lowering the price forecast from $145 to $130.",
+        "url": "https://www.benzinga.com/analyst-ratings/analyst-color/25/05/45474952/analyst-lowers-target-q1-forecast-amid-spending-slump-rising-consumer-tariffs"
+      },
+      {
+        "headline": "CalSTRS Ups Trump Media Stake Despite 'Unprecedented And World-Changing' Risks",
+        "summary": "A large California pension fund increased its stake in Trump Media after warnings about President Trump&#39;s economic policies.",
+        "url": "https://www.benzinga.com/25/05/45474451/california-teachers-retirement-fund-increases-trump-media-stake-despite-unprecedented-and-world-changing-risks-from-president"
+      },
+      {
+        "headline": "Expert Outlook: Apple Through The Eyes Of 31 Analysts",
+        "summary": " ",
+        "url": "https://www.benzinga.com/insights/analyst-ratings/25/05/45474434/expert-outlook-apple-through-the-eyes-of-31-analysts"
+      },
+      {
+        "headline": "Reuters Reports Apple Spokesperson Says Asked Epic Sweden To Resubmit App Update Without Including The Us Storefront Of The App Store; Did Not Take Any Action To Remove Live Version Of Fortnite From Alternative Distribution Marketplaces",
+        "summary": "",
+        "url": "https://www.benzinga.com/news/25/05/45472954/reuters-reports-apple-spokesperson-says-asked-epic-sweden-to-resubmit-app-update-without-including-t"
+      },
+      {
+        "headline": "Bloomberg Managing Editor Mark Gurman Posts On X \"Apple: We asked that Epic Sweden resubmit the app update without including the US storefront of the App Store so as not to impact Fortnite in other geographies. We did not take any action to remove the live version of Fortnite from alternative distribution marketplaces in the EC\"",
+        "summary": "",
+        "url": "https://www.benzinga.com/economics/macro-economic-events/25/05/45472249/bloomberg-managing-editor-mark-gurman-posts-on-x-apple-we-asked-that-epic-sweden-"
+      },
+      {
+        "headline": "Inquiry Into Apple's Competitor Dynamics In Technology Hardware, Storage &amp; Peripherals Industry",
+        "summary": " ",
+        "url": "https://www.benzinga.com/insights/news/25/05/45470918/inquiry-into-apples-competitor-dynamics-in-technology-hardware-storage-amp-peripherals-industry"
+      },
+      {
+        "headline": "Wedbush Reiterates Outperform on Apple, Maintains $270 Price Target",
+        "summary": "",
+        "url": "https://www.benzinga.com/news/25/05/45469879/wedbush-reiterates-outperform-on-apple-maintains-270-price-target"
+      },
+      {
+        "headline": "Top 10 Trending Stocks On WallStreetBets As Of May 16, 2025 (Via Swaggy Stocks)",
+        "summary": "",
+        "url": "https://www.benzinga.com/trading-ideas/25/05/45467187/top-10-trending-stocks-on-wallstreetbets-as-of-may-16-2025-via-swaggy-stocks"
+      },
+      {
+        "headline": "US Slams Europe's Digital Laws, Calls Them A Danger To Free Expression And American Big Tech",
+        "summary": "The Trump administration has intensified its critique of Europe&#39;s digital regulations, asserting that they pose a risk to free speech and American commercial interests.",
+        "url": "https://www.benzinga.com/25/05/45466937/us-targets-european-digital-rules-in-free-speech-campaign-defending-american-big-tech"
+      },
+      {
+        "headline": "To Serve Exploding AI Chip Demand, Taiwan Semiconductor Plans 9 Advanced Factories",
+        "summary": "\nTSM plans to construct nine new advanced wafer and packaging factories by 2025 to meet growing demand for its chips, with a total investment of $15.25 billion.",
+        "url": "https://www.benzinga.com/markets/asia/25/05/45466444/to-serve-exploding-ai-chip-demand-taiwan-semiconductor-plans-9-advanced-factories"
+      },
+      {
+        "headline": "Apple iPhone Production In US 'Not Feasible,' Says Tech Bull After Donald Trump Tells Tim Cook To Stay Out Of India",
+        "summary": "Wedbush analyst, Dan Ives\u00a0anticipates that Apple Inc. (NASDAQ: AAPL) could increase its\u00a0iPhone assembly production in India\u00a0to 60%-65% by fall, depending on tariff negotiations.",
+        "url": "https://www.benzinga.com/25/05/45464834/apple-iphone-production-in-us-not-feasible-says-tech-bull-after-donald-trump-tells-tim-cook-to-stay-out-of-india"
+      },
+      {
+        "headline": "'No Change' In Apple's Production Plans, Says India, Despite Trump's 'Little Problem' With CEO Tim Cook: Report",
+        "summary": "Despite the recent criticism from U.S. President Donald Trump, India remains committed to its growing partnership with\u00a0Apple Inc.\u00a0(NASDAQ: AAPL).",
+        "url": "https://www.benzinga.com/markets/25/05/45462006/no-change-in-apples-production-plans-says-india-despite-trumps-little-problem-with-ceo-tim-cook-report"
+      },
+      {
+        "headline": "Wall Street Getting Nervous? Magnificent 7 Giants Face $33M Bet Against Them As Market Turbulence Looms",
+        "summary": "Options activities show a sudden burst in bearish sentiment in the markets, particularly among large-cap tech stocks, following $33 million worth of put options being purchased.",
+        "url": "https://www.benzinga.com/markets/options/25/05/45460072/wall-street-getting-nervous-magnificent-7-giants-face-33m-bet-against-them-as-market-turbulence-looms"
+      },
+      {
+        "headline": "Steve Ballmer's Missed Call: $1000 Investment Then Worth $289,000 To Apple Investors Today \u2014 Why Ex-Microsoft CEO Once Admitted 'Religious Transformation' Came Too Late",
+        "summary": " ",
+        "url": "https://www.benzinga.com/25/05/45458915/had-microsoft-built-phones-earlier-things-might-look-different-today-steve-ballmers-missed-call-now-worth-289000-to-apple-investors"
+      }
+    ]
+  },
+  "TSLA": {
+    "fundamentals": {
+      "income": {
+        "Total Revenue": {
+          "2024-12-31": 97690000000.0,
+          "2023-12-31": 96773000000.0,
+          "2022-12-31": 81462000000.0,
+          "2021-12-31": 53823000000.0
+        },
+        "Gross Profit": {
+          "2024-12-31": 17450000000.0,
+          "2023-12-31": 17660000000.0,
+          "2022-12-31": 20853000000.0,
+          "2021-12-31": 13606000000.0
+        },
+        "Operating Income": {
+          "2024-12-31": 7760000000.0,
+          "2023-12-31": 8891000000.0,
+          "2022-12-31": 13832000000.0,
+          "2021-12-31": 6496000000.0
+        },
+        "Net Income": {
+          "2024-12-31": 7130000000.0,
+          "2023-12-31": 14999000000.0,
+          "2022-12-31": 12583000000.0,
+          "2021-12-31": 5524000000.0
+        }
+      },
+      "balance": {
+        "Total Assets": {
+          "2024-12-31": 122070000000.0,
+          "2023-12-31": 106618000000.0,
+          "2022-12-31": 82338000000.0,
+          "2021-12-31": 62131000000.0
+        },
+        "Total Debt": {
+          "2024-12-31": 13623000000.0,
+          "2023-12-31": 9573000000.0,
+          "2022-12-31": 5748000000.0,
+          "2021-12-31": 8873000000.0
+        }
+      },
+      "trailingPE": 199.98857,
+      "currentPBV": 15.095757,
+      "bookValueHistory": {},
+      "historicalPE": {
+        "2024-12-31": 182.4337271535052,
+        "2021-12-31": 205.39742958991448
+      },
+      "margins": {
+        "2024-12-31": {
+          "grossMargin": 0.17862626676220697,
+          "operatingMargin": 0.07943494728221927,
+          "netMargin": 0.07298597604667827
+        },
+        "2023-12-31": {
+          "grossMargin": 0.18248891736331416,
+          "operatingMargin": 0.0918747997891974,
+          "netMargin": 0.15499157822946483
+        },
+        "2022-12-31": {
+          "grossMargin": 0.25598438535759005,
+          "operatingMargin": 0.16979696054602145,
+          "netMargin": 0.15446465836831896
+        },
+        "2021-12-31": {
+          "grossMargin": 0.25279155751258753,
+          "operatingMargin": 0.12069189751593185,
+          "netMargin": 0.10263270349107259
+        }
+      },
+      "debtToEquityHistory": {
+        "2024-12-31": null,
+        "2023-12-31": null,
+        "2022-12-31": null,
+        "2021-12-31": null
+      }
+    },
+    "news": [
+      {
+        "headline": "Shaq Rolls Up In A Cybertruck \u2014 Elon Musk Has This One-Word Response",
+        "summary": "Elon Musk gave a one-word response to NBA legend\u00a0Shaquille O&#39;Neal&#39;s\u00a0customized Tesla Cybertruck.",
+        "url": "https://www.benzinga.com/general/sports/25/05/45483236/shaq-rolls-up-in-a-cybertruck-elon-musk-has-this-one-word-response"
+      },
+      {
+        "headline": "LinkedIn Cofounder Reid Hoffman Says Elon Musk's Baseless Jeffrey Epstein Claims Forced Him To Hire Security",
+        "summary": " ",
+        "url": "https://www.benzinga.com/tech/25/05/45483167/linkedin-cofounder-reid-hoffman-says-elon-musks-baseless-jeffrey-epstein-claims-forced-him-to-hire-security"
+      },
+      {
+        "headline": "Elon Musk Pulls Back\u2014But His Federal Overhaul Machine Rolls On",
+        "summary": "Elon Musk steps back from DOGE, but his federal reform agenda continues reshaping Washington through deep-rooted initiatives and layoffs.",
+        "url": "https://www.benzinga.com/markets/equities/25/05/45483023/elon-musk-pulls-back-but-his-federal-overhaul-machine-rolls-on"
+      },
+      {
+        "headline": "Elon Musk Takes A Swipe At Minnesota Governor Tim Walz As TSLA Stock Surges 45% In One Month: 'How's Your Day, Bro?'",
+        "summary": "Elon Musk took a public jab at Minnesota Governor Tim Walz after Tesla stock surged nearly 45% in a month, clapping back at earlier criticism with a pointed post on X.",
+        "url": "https://www.benzinga.com/markets/25/05/45481170/as-tesla-stock-witnesses-nearly-45-surge-in-one-month-elon-musk-asks-minnesota-governor-tim-walz-hows-your-day-bro"
+      },
+      {
+        "headline": "Why A Danish Company Is Telling Elon Musk 'Thanks For The Ride' \u2014 And Returning Its Tesla Fleet",
+        "summary": "Tesla vehicles have faced sharp selling pressure in Europe. A Danish company returned their vehicle of Tesla vehicles that were meant for their commercial fleet.",
+        "url": "https://www.benzinga.com/news/global/25/05/45478121/why-a-danish-company-is-telling-elon-musk-thanks-for-the-ride-and-returning-its-tesla-fleet"
+      },
+      {
+        "headline": "Mizuho Maintains Outperform on Tesla, Raises Price Target to $390",
+        "summary": "",
+        "url": "https://www.benzinga.com/news/25/05/45474623/mizuho-maintains-outperform-on-tesla-raises-price-target-to-390"
+      },
+      {
+        "headline": "CalSTRS Ups Trump Media Stake Despite 'Unprecedented And World-Changing' Risks",
+        "summary": "A large California pension fund increased its stake in Trump Media after warnings about President Trump&#39;s economic policies.",
+        "url": "https://www.benzinga.com/25/05/45474451/california-teachers-retirement-fund-increases-trump-media-stake-despite-unprecedented-and-world-changing-risks-from-president"
+      },
+      {
+        "headline": "Staff Program Manager North America Sales Operations At Tesla Ryan Torres Posts On X \"News: Tesla Lyft Driver Purchase Program. If you are an eligible driver with @lyft, you can purchase a new Tesla vehicle and receive $1,000* in Tesla Credits upon taking delivery, plus a $1,000 incentive from Lyft after completing 100 trips by July 13, 2025. Your Tesla Credits can be applied to Supercharging, a new Tesla vehicle, Service appointments or select Tesla Shop or upgrade purchases*. ...\"",
+        "summary": "",
+        "url": "https://www.benzinga.com/news/25/05/45473793/staff-program-manager-north-america-sales-operations-at-tesla-ryan-torres-posts-on-x-news-tesla-lyft"
+      },
+      {
+        "headline": "Loeb's Third Point Exits Meta, Tesla, Rotates Into Staples, Telecom, Industrials",
+        "summary": "Third Point LLC, led by Dan Loeb, sold stakes in top stocks during Q1 of 2025 amid tariff concerns. Also made significant new additions and increases.",
+        "url": "https://www.benzinga.com/news/large-cap/25/05/45472025/loebs-third-point-exits-meta-tesla-rotates-into-staples-telecom-industrials"
+      },
+      {
+        "headline": "Tesla Adds Chipotle Exec Jack Hartung To Board Amid Musk Pay Battle",
+        "summary": "John R. Hartung, president &amp; chief strategy officer of Chipotle, was elected to Tesla&#39;s Board of Directors &amp; Audit Committee effective 6/1/2025.",
+        "url": "https://www.benzinga.com/news/management/25/05/45470648/tesla-adds-chipotle-exec-jack-hartung-to-board-amid-musk-pay-battle"
+      },
+      {
+        "headline": "Top 10 Trending Stocks On WallStreetBets As Of May 16, 2025 (Via Swaggy Stocks)",
+        "summary": "",
+        "url": "https://www.benzinga.com/trading-ideas/25/05/45467187/top-10-trending-stocks-on-wallstreetbets-as-of-may-16-2025-via-swaggy-stocks"
+      },
+      {
+        "headline": "Wall Street Poised To Open Higher After S&P 500's 4-Day Run: 'Sounds Like Powell Is Expecting More Frequent Bouts Of Stagflation,' Cautions Expert (CORRECTED)",
+        "summary": " ",
+        "url": "https://www.benzinga.com/markets/equities/25/05/45463291/wall-street-poised-to-open-higher-after-sp-500s-4-day-run-sounds-like-powell-is-expecting-more-frequent-bouts-of-stagflation-cautions-expert"
+      },
+      {
+        "headline": "Tesla Futurist Brian Wang Doubles Down On $1,000 Price Target, Bets Big On AI And Robotaxis: 'Few Technical Resistance Levels...Then It's All-Time Highs'",
+        "summary": "Futurist and long-term Tesla Inc. bull, Brian Wang is doubling down on one of the most aggressive price forecasts on the EV giant, citing big AI and autonomy gains.",
+        "url": "https://www.benzinga.com/markets/25/05/45463905/tesla-futurist-brian-wang-doubles-down-on-1000-price-target-bets-big-on-ai-and-robotaxis-few-technical-resistance-levels-then-its-all-time-highs"
+      },
+      {
+        "headline": "S&P 500 Settles Higher For Fourth Session Amid Surge In Tech Stocks: Investor Sentiment Slips, But Fear Index Stays In 'Greed' Zone",
+        "summary": " ",
+        "url": "https://www.benzinga.com/25/05/45462288/sp-500-settles-higher-for-fourth-session-amid-surge-in-tech-stocks-investor-sentiment-decreases-but-fear-greed-index-remains-in-greed-zone"
+      },
+      {
+        "headline": "Wall Street Getting Nervous? Magnificent 7 Giants Face $33M Bet Against Them As Market Turbulence Looms",
+        "summary": "Options activities show a sudden burst in bearish sentiment in the markets, particularly among large-cap tech stocks, following $33 million worth of put options being purchased.",
+        "url": "https://www.benzinga.com/markets/options/25/05/45460072/wall-street-getting-nervous-magnificent-7-giants-face-33m-bet-against-them-as-market-turbulence-looms"
+      }
+    ]
+  },
+  "NVDA": {
+    "fundamentals": {
+      "income": {
+        "Total Revenue": {
+          "2025-01-31": 130497000000.0,
+          "2024-01-31": 60922000000.0,
+          "2023-01-31": 26974000000.0,
+          "2022-01-31": 26914000000.0
+        },
+        "Gross Profit": {
+          "2025-01-31": 97858000000.0,
+          "2024-01-31": 44301000000.0,
+          "2023-01-31": 15356000000.0,
+          "2022-01-31": 17475000000.0
+        },
+        "Operating Income": {
+          "2025-01-31": 81453000000.0,
+          "2024-01-31": 32972000000.0,
+          "2023-01-31": 5577000000.0,
+          "2022-01-31": 10041000000.0
+        },
+        "Net Income": {
+          "2025-01-31": 72880000000.0,
+          "2024-01-31": 29760000000.0,
+          "2023-01-31": 4368000000.0,
+          "2022-01-31": 9752000000.0
+        }
+      },
+      "balance": {
+        "Total Assets": {
+          "2025-01-31": 111601000000.0,
+          "2024-01-31": 65728000000.0,
+          "2023-01-31": 41182000000.0,
+          "2022-01-31": 44187000000.0
+        },
+        "Total Debt": {
+          "2025-01-31": 10270000000.0,
+          "2024-01-31": 11056000000.0,
+          "2023-01-31": 12031000000.0,
+          "2022-01-31": 11831000000.0
+        }
+      },
+      "trailingPE": 46.05442,
+      "currentPBV": 41.77723,
+      "bookValueHistory": {},
+      "historicalPE": {
+        "2025-01-31": 40.17494426517563,
+        "2024-01-31": 50.40096709379411,
+        "2023-01-31": 108.99049551517429,
+        "2022-01-31": 61.12679053726799
+      },
+      "margins": {
+        "2025-01-31": {
+          "grossMargin": 0.7498869705816992,
+          "operatingMargin": 0.6241752683969747,
+          "netMargin": 0.5584802715771244
+        },
+        "2024-01-31": {
+          "grossMargin": 0.7271757329043695,
+          "operatingMargin": 0.5412166376678376,
+          "netMargin": 0.4884934834706674
+        },
+        "2023-01-31": {
+          "grossMargin": 0.5692889449099132,
+          "operatingMargin": 0.20675465262845702,
+          "netMargin": 0.16193371394676356
+        },
+        "2022-01-31": {
+          "grossMargin": 0.6492903321691313,
+          "operatingMargin": 0.3730772088875678,
+          "netMargin": 0.3623393029649996
+        }
+      },
+      "debtToEquityHistory": {
+        "2025-01-31": null,
+        "2024-01-31": null,
+        "2023-01-31": null,
+        "2022-01-31": null
+      }
+    },
+    "news": [
+      {
+        "headline": "Nvidia's Jensen Huang Doesn't Want You To Order A Shake At Denny's, 'Get A Coke' He Says",
+        "summary": "Jensen Huang, co-founder of Nvidia, credits his shy teenage years as a Denny&#39;s busboy for developing people skills. Now a billionaire, Nvidia has been dominating the AI industry with a projected $400B in data-center spending next year.",
+        "url": "https://www.benzinga.com/general/entertainment/25/05/45482864/nvidias-jensen-huang-doesnt-want-you-to-order-a-shake-at-dennys-get-a-coke-he-says"
+      },
+      {
+        "headline": "Benzinga Bulls And Bears: Virgin Galactic, Duolingo, Alibaba \u2014 And Stocks Close Up Five Days In A Row",
+        "summary": "Benzinga examined the prospects for many investors&#39; favorite stocks over the last week \u2014 here&#39;s a look at some of our top stories.",
+        "url": "https://www.benzinga.com/markets/25/05/45482538/benzinga-bulls-and-bears-virgin-galactic-duolingo-alibaba-and-stocks-close-up-five-days-in-a-row"
+      },
+      {
+        "headline": "'Big Short' Investor Michael Burry Turns Bearish On China: What's On His Short List Now",
+        "summary": "Michael Burry&#39;s hedge fund turns bearish on Chinese tech stocks.",
+        "url": "https://www.benzinga.com/news/global/25/05/45478950/big-short-investor-michael-burry-turns-bearish-on-china-whats-on-his-short-list-now"
+      },
+      {
+        "headline": "US-China Trade Truce, Trump's Middle East Deals Spark Wall Street Rally: This Week In Markets",
+        "summary": "U.S. and China cut tariffs by 115 points, sparking a stock rally and improving trade outlook. Trump secures $2 trillion in Gulf deals.",
+        "url": "https://www.benzinga.com/economics/macro-economic-events/25/05/45476624/us-china-trade-truce-trumps-middle-east-deals-spark-wall-street-rally-this-week-in-markets"
+      },
+      {
+        "headline": "'OpenAI To Help UAE Develop One Of World's Biggest Data Centers' - Bloomberg News",
+        "summary": "",
+        "url": "https://www.benzinga.com/economics/macro-economic-events/25/05/45475054/openai-to-help-uae-develop-one-of-worlds-biggest-data-centers-bloomberg-news"
+      },
+      {
+        "headline": "CalSTRS Ups Trump Media Stake Despite 'Unprecedented And World-Changing' Risks",
+        "summary": "A large California pension fund increased its stake in Trump Media after warnings about President Trump&#39;s economic policies.",
+        "url": "https://www.benzinga.com/25/05/45474451/california-teachers-retirement-fund-increases-trump-media-stake-despite-unprecedented-and-world-changing-risks-from-president"
+      },
+      {
+        "headline": "10 Information Technology Stocks With Whale Alerts In Today's Session",
+        "summary": " ",
+        "url": "https://www.benzinga.com/insights/options/25/05/45474114/10-information-technology-stocks-with-whale-alerts-in-todays-session"
+      },
+      {
+        "headline": "'YUAN Unveils Next-Gen AI Video Processing Platform with NVIDIA Jetson Orin At GTC 2025' - YUAN",
+        "summary": "",
+        "url": "https://www.benzinga.com/news/25/05/45472964/yuan-unveils-next-gen-ai-video-processing-platform-with-nvidia-jetson-orin-at-gtc-2025-yuan"
+      },
+      {
+        "headline": "CoreWeave (CRWV) Stock Soars 45% This Week After Nvidia Stake, Blowout Earnings And OpenAI Deal",
+        "summary": "CoreWeave stock soared to a new all-time high Friday fueled by strong AI enthusiasm. Strong financial results, backlog and OpenAI deal have boosted shares.",
+        "url": "https://www.benzinga.com/news/25/05/45472274/coreweave-crwv-stock-soars-45-this-week-after-nvidia-stake-blowout-earnings-and-openai-deal"
+      },
+      {
+        "headline": "Loeb's Third Point Exits Meta, Tesla, Rotates Into Staples, Telecom, Industrials",
+        "summary": "Third Point LLC, led by Dan Loeb, sold stakes in top stocks during Q1 of 2025 amid tariff concerns. Also made significant new additions and increases.",
+        "url": "https://www.benzinga.com/news/large-cap/25/05/45472025/loebs-third-point-exits-meta-tesla-rotates-into-staples-telecom-industrials"
+      },
+      {
+        "headline": "Competitor Analysis: Evaluating NVIDIA And Competitors In Semiconductors &amp; Semiconductor Equipment Industry",
+        "summary": " ",
+        "url": "https://www.benzinga.com/insights/news/25/05/45470779/competitor-analysis-evaluating-nvidia-and-competitors-in-semiconductors-amp-semiconductor-equipment"
+      },
+      {
+        "headline": "'Nvidia says it is not sending GPU designs to China after reports of new Shanghai operation'- CNBC",
+        "summary": "",
+        "url": "https://www.benzinga.com/news/25/05/45468696/nvidia-says-it-is-not-sending-gpu-designs-to-china-after-reports-of-new-shanghai-operation-cnbc"
+      },
+      {
+        "headline": "Top 10 Trending Stocks On WallStreetBets As Of May 16, 2025 (Via Swaggy Stocks)",
+        "summary": "",
+        "url": "https://www.benzinga.com/trading-ideas/25/05/45467187/top-10-trending-stocks-on-wallstreetbets-as-of-may-16-2025-via-swaggy-stocks"
+      },
+      {
+        "headline": "To Serve Exploding AI Chip Demand, Taiwan Semiconductor Plans 9 Advanced Factories",
+        "summary": "\nTSM plans to construct nine new advanced wafer and packaging factories by 2025 to meet growing demand for its chips, with a total investment of $15.25 billion.",
+        "url": "https://www.benzinga.com/markets/asia/25/05/45466444/to-serve-exploding-ai-chip-demand-taiwan-semiconductor-plans-9-advanced-factories"
+      },
+      {
+        "headline": "Wall Street Poised To Open Higher After S&P 500's 4-Day Run: 'Sounds Like Powell Is Expecting More Frequent Bouts Of Stagflation,' Cautions Expert (CORRECTED)",
+        "summary": " ",
+        "url": "https://www.benzinga.com/markets/equities/25/05/45463291/wall-street-poised-to-open-higher-after-sp-500s-4-day-run-sounds-like-powell-is-expecting-more-frequent-bouts-of-stagflation-cautions-expert"
+      }
+    ]
+  }
+}
