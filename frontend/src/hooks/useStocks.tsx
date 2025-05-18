@@ -28,26 +28,87 @@ interface FundamentalAnalysis {
   }>;
 }
 
+interface ForecastDay {
+  day: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
+  trade_count: number;
+  vwap: number;
+}
+
+interface SupportingPoint {
+  type: 'high' | 'low';
+  day: string;
+  high: number;
+  low: number;
+}
+
+interface Pattern {
+  pattern_name: string;
+  supporting_points: SupportingPoint[];
+}
+
+interface StockForecast {
+  weekly_forecast: ForecastDay[];
+  recommendation: string;
+  confidence_level: number;
+  reasoning: string;
+  detected_patterns: Pattern[];
+}
+
+interface TechnicalAnalysis {
+  _id: string;
+  timestamp: string;
+  stocks: Record<string, StockForecast>;
+}
+
+interface StockHistoryPoint {
+  symbol: string;
+  date: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
+  [key: string]: any; // For any additional fields
+}
+
+interface StockHistory {
+  _id: string;
+  timestamp: string;
+  data?: StockHistoryPoint[];
+  stocks?: Record<string, StockHistoryPoint[]>;
+}
+
 // API URL
 const API_URL = 'http://localhost:8000';
 
 export const useStocks = () => {
   const [report, setReport] = useState<FinancialReport | null>(null);
   const [analysis, setAnalysis] = useState<FundamentalAnalysis | null>(null);
+  const [technicalAnalysis, setTechnicalAnalysis] = useState<TechnicalAnalysis | null>(null);
+  const [history, setHistory] = useState<StockHistory | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
     try {
       setLoading(true);
-      // Fetch both data sources in parallel
-      const [reportResponse, analysisResponse] = await Promise.all([
+      // Fetch all data sources in parallel
+      const [reportResponse, analysisResponse, technicalResponse, historyResponse] = await Promise.all([
         axios.get<FinancialReport>(`${API_URL}/stocks/financial-reports`),
-        axios.get<FundamentalAnalysis>(`${API_URL}/stocks/fundamental-analysis`)
+        axios.get<FundamentalAnalysis>(`${API_URL}/stocks/fundamental-analysis`),
+        axios.get<TechnicalAnalysis>(`${API_URL}/stocks/technical-analysis`),
+        axios.get<StockHistory>(`${API_URL}/stocks/stock-history`)
       ]);
       
       setReport(reportResponse.data);
       setAnalysis(analysisResponse.data);
+      setTechnicalAnalysis(technicalResponse.data);
+      setHistory(historyResponse.data);
       setError(null);
     } catch (err) {
       console.error('Error fetching stock data:', err);
@@ -67,17 +128,54 @@ export const useStocks = () => {
   // Get financial data for a specific stock ticker
   const getStockData = (ticker: string) => report?.stocks[ticker] || null;
   
-  // Get analysis data for a specific stock ticker
+  // Get fundamental analysis data for a specific stock ticker
   const getStockAnalysis = (ticker: string) => analysis?.stocks[ticker] || null;
+  
+  // Get technical analysis data for a specific stock ticker
+  const getStockForecast = (ticker: string) => technicalAnalysis?.stocks[ticker] || null;
+  
+  // Get historical data for a specific stock ticker
+  const getStockHistory = (ticker: string) => {
+    if (!history) return [];
+    
+    // Check which structure we're dealing with
+    if (history.stocks && history.stocks[ticker]) {
+      // New structure with stocks dictionary
+      return history.stocks[ticker];
+    } else if (history.data) {
+      // Old structure with data array
+      return history.data.filter(item => item.symbol === ticker);
+    }
+    
+    return [];
+  };
+
+  // Generate a new technical analysis
+  const generateTechnicalAnalysis = async (tickers?: string[]) => {
+    try {
+      await axios.post(`${API_URL}/stocks/technical-analysis/generate`, { symbols: tickers });
+      // Wait a bit to give time for the analysis to complete
+      setTimeout(fetchData, 5000);
+      return true;
+    } catch (err) {
+      console.error('Error generating technical analysis:', err);
+      return false;
+    }
+  };
 
   return {
     report,
     analysis,
+    technicalAnalysis,
+    history,
     loading,
     error,
     refreshData: fetchData,
     stockTickers,
     getStockData,
-    getStockAnalysis
+    getStockAnalysis,
+    getStockForecast,
+    getStockHistory,
+    generateTechnicalAnalysis
   };
 };

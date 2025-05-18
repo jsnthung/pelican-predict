@@ -1,9 +1,40 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, BackgroundTasks
 from typing import Dict, List, Any, Optional
 from controller.mongodb import MongoDB
+import sys
+import os
+import importlib.util
+from pathlib import Path
 
 router = APIRouter()
 mongodb = MongoDB(db_name="PeliCanStonks")
+
+# Import the technical analysis functions
+def load_technical_analysis():
+    try:
+        # Get the base path for the controller directory
+        base_path = Path(__file__).parent.parent / "controller"
+        
+        # Add the technical_analysis directory to sys.path
+        tech_analysis_path = str(base_path / "technical_analysis")
+        if tech_analysis_path not in sys.path:
+            sys.path.append(tech_analysis_path)
+            
+        # Import the main module from technical_analysis
+        spec = importlib.util.spec_from_file_location(
+            "tech_analysis", 
+            base_path / "technical_analysis" / "main.py"
+        )
+        tech_analysis = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(tech_analysis)
+        
+        return tech_analysis.main
+    except Exception as e:
+        print(f"Error loading technical analysis module: {e}")
+        return None
+
+# Load the technical analysis functions
+run_technical_analysis = load_technical_analysis()
 
 @router.get("/financial-reports", response_model=Optional[Dict[str, Any]])
 async def get_financial_reports():
@@ -60,5 +91,114 @@ async def get_fundamental_analysis():
         return analysis
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching fundamental analysis: {str(e)}")
+    finally:
+        mongodb.disconnect()
+
+@router.get("/technical-analysis", response_model=Optional[Dict[str, Any]])
+async def get_technical_analysis():
+    """
+    Get the most recent technical analysis from the database
+    """
+    try:
+        mongodb.connect()
+        # Fetch the latest document by sorting on timestamp in descending order
+        # and limiting to 1 result
+        collection = mongodb.get_collection("technical_analysis")
+        latest_analysis = collection.find().sort("timestamp", -1).limit(1)
+        
+        # Convert cursor to list and get the first (and only) item if it exists
+        analysis_list = list(latest_analysis)
+        if not analysis_list:
+            return None
+            
+        analysis = analysis_list[0]
+        
+        # Convert ObjectId to string for JSON serialization
+        if "_id" in analysis:
+            analysis["_id"] = str(analysis["_id"])
+                
+        return analysis
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching technical analysis: {str(e)}")
+    finally:
+        mongodb.disconnect()
+
+@router.post("/technical-analysis/generate", response_model=Dict[str, Any])
+async def generate_technical_analysis(background_tasks: BackgroundTasks, symbols: Optional[List[str]] = None):
+    """
+    Generate a new technical analysis for the specified stock symbols
+    
+    Args:
+        symbols: List of stock symbols to analyze. Defaults to ["AAPL", "TSLA", "NVDA"]
+    """
+    if not run_technical_analysis:
+        raise HTTPException(status_code=500, detail="Technical analysis module not available")
+        
+    if not symbols:
+        symbols = ["AAPL", "TSLA", "NVDA"]
+        
+    # Run the analysis in the background
+    background_tasks.add_task(run_technical_analysis, symbols)
+    
+    return {
+        "message": f"Technical analysis started for symbols: {', '.join(symbols)}",
+        "status": "processing"
+    }
+
+@router.get("/stock-history", response_model=Optional[Dict[str, Any]])
+async def get_stock_history(symbol: Optional[str] = None):
+    """
+    Get the most recent historical stock data
+    
+    Args:
+        symbol: Optional stock symbol to filter results
+    """
+    try:
+        mongodb.connect()
+        collection = mongodb.get_collection("stonk_history")
+        latest_history = collection.find().sort("timestamp", -1).limit(1)
+        
+        history_list = list(latest_history)
+        if not history_list:
+            return None
+            
+        history = history_list[0]
+        
+        # Convert ObjectId to string for JSON serialization
+        if "_id" in history:
+            history["_id"] = str(history["_id"])
+            
+        # Handle different data structures
+        if "stocks" in history and isinstance(history["stocks"], dict):
+            # New structure with stocks dictionary
+            if symbol:
+                # Return only the requested symbol
+                if symbol in history["stocks"]:
+                    filtered_data = {
+                        "_id": history["_id"],
+                        "timestamp": history["timestamp"],
+                        "stocks": {
+                            symbol: history["stocks"][symbol]
+                        }
+                    }
+                    return filtered_data
+                else:
+                    return {
+                        "_id": history["_id"],
+                        "timestamp": history["timestamp"],
+                        "stocks": {}
+                    }
+            # If no symbol specified, return all symbols
+            return history
+        elif "data" in history:
+            # Old structure with data list
+            if symbol:
+                history["data"] = [item for item in history["data"] if item.get("symbol") == symbol]
+            return history
+        else:
+            # Unknown structure, return as is
+            return history
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching stock history: {str(e)}")
     finally:
         mongodb.disconnect() 
