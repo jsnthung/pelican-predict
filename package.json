@@ -1,0 +1,15 @@
+{
+  "name": "pelican-predict",
+  "version": "1.0.0",
+  "description": "Pelican Predict: Stock Prices Prediction Tool",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install && cd frontend && npm install && cd ../backend && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && source venv/bin/activate && uvicorn main:app --reload",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
