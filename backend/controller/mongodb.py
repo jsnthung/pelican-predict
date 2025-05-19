@@ -24,7 +24,7 @@ class MongoDB:
         if not self.client:
             self.client = MongoClient(
                 self.mongo_uri,
-                tlsAllowInvalidCertificates=True
+                tls=True
             )
             self.db = self.client[self.db_name]
             # Test connection
