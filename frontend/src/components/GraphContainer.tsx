@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import EchartsCandlestickChart from '@/lib/components/EchartsCandlestickChart';
 
-function GraphContainer({ stock, history }: { stock: string, history: any[] }) {
-  const [position, setPosition] = useState<'short' | 'long'>('long');
+function GraphContainer({ history }: { stock: string, history: any[] }) {
+  const [] = useState<'short' | 'long'>('long');
   const [days, setDays] = useState(60);
   const [showPrediction, setShowPrediction] = useState(true);
 
