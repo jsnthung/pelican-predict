@@ -16,9 +16,6 @@ interface NewsItem {
 
 function StockOverviewView({ selectedStock, onStockChange }: StockOverviewViewProps) {
   const { 
-    report, 
-    analysis, 
-    technicalAnalysis,
     loading, 
     error, 
     stockTickers, 
