@@ -1,5 +1,3 @@
-import React from 'react';
-
 type ReasonContainerProps = {
   title: string;
   reason: string;
