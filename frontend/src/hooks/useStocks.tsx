@@ -84,7 +84,7 @@ interface StockHistory {
 }
 
 // API URL
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://pelican-predict-backend.onrender.com';
 
 export const useStocks = () => {
   const [report, setReport] = useState<FinancialReport | null>(null);
