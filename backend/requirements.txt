@@ -7,7 +7,8 @@ tabulate
 requests                                                                                                                                        
 transformers
 python-dotenv
-pymongo
+pymongo>=4.5.0
+dnspython>=2.3.0
 matplotlib
 jupyter
 annotated-types==0.7.0
