@@ -84,7 +84,7 @@ interface StockHistory {
 }
 
 // API URL
-const API_URL = import.meta.env.VITE_API_BASE_URL;
+const API_URL = 'https://pelican-predict-backend.onrender.com';
 
 export const useStocks = () => {
   const [report, setReport] = useState<FinancialReport | null>(null);
