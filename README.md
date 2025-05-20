@@ -79,7 +79,7 @@ Made with ❤️ by:
 - [@gregoriusnico](https://github.com/gregoriusnico)
 - [@raymondkings](https://github.com/raymondkings)
 
-During **Makeathon 2025** hosted by **TUM.ai** (https://makeathon.tum-ai.com/)  
+During [**Makeathon 2025**](https://makeathon.tum-ai.com/)   hosted by **TUM.ai**
 🧠 Challenge by: **OpenAI**
 
 ---
