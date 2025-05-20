@@ -13,7 +13,7 @@ FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
 
 ALLOWED_ORIGINS = [FRONTEND_URL]
 if ENVIRONMENT == 'production':
-    ALLOWED_ORIGINS.append('https://www.google.com')  # TODO: Change to the production URL
+    ALLOWED_ORIGINS.append('https://pelican-predict-frontend.onrender.com')  # the production URL
 
 app = FastAPI(
     title="SaaS API",
@@ -26,9 +26,7 @@ app = FastAPI(
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://pelican-predict-frontend.onrender.com",  # your frontend URL
-    ],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
