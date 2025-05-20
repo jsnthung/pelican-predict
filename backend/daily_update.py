@@ -1,3 +1,4 @@
+import time
 import requests
 
 def main(args=None):
@@ -11,6 +12,13 @@ def main(args=None):
     data = ["AAPL", "TSLA", "NVDA"]
 
     response1 = requests.post(endpoint + '/stocks/technical-analysis/generate',headers=headers, json=data)
+    
+    delay = 5
+    while delay > 0:
+        print(f"Waiting for {delay} seconds...")
+        time.sleep(1)
+        delay -= 1
+    
     response2 = requests.post(endpoint + '/stocks/fundamental-analysis/generate',headers=headers, json=data)
 
     print(response1.text)
