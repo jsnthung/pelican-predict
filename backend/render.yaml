@@ -19,3 +19,21 @@ services:
         value: production
       - key: FRONTEND_URL
         value: https://pelican-predict-frontend.onrender.com
+
+  - type: cron
+    name: pelican-daily-updater
+    env: python
+    schedule: "0 6 * * *"  # Daily at 06:00 UTC
+    runtime:
+      pythonVersion: 3.10
+      buildImage: ubuntu-22
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python daily_update.py
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ENVIRONMENT
+        value: production
