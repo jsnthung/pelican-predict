@@ -140,6 +140,9 @@ async def generate_technical_analysis(background_tasks: BackgroundTasks, symbols
     # Run the analysis in the background
     background_tasks.add_task(run_technical_analysis, symbols)
     
+    print(f"Starting technical analysis for symbols: {', '.join(symbols)}")
+    # Return a response indicating that the analysis has started
+    
     return {
         "message": f"Technical analysis started for symbols: {', '.join(symbols)}",
         "status": "processing"
