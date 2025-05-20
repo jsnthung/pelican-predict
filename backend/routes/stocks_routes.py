@@ -140,7 +140,6 @@ async def generate_technical_analysis(background_tasks: BackgroundTasks, symbols
         
     # Run the analysis in the background
     background_tasks.add_task(run_technical_analysis, symbols)
-    background_tasks.add_task(run_fundamental_analysis, ["AAPL", "TSLA", "NVDA"])
     print(f"Starting technical analysis for symbols: {', '.join(symbols)}")
     # Return a response indicating that the analysis has started
     
@@ -161,7 +160,7 @@ async def generate_fundamental_analysis(background_tasks: BackgroundTasks, symbo
         symbols = ["AAPL", "TSLA", "NVDA"]
         
     # Run the analysis in the background
-    background_tasks.add_task(run_fundamental_analysis, ["AAPL", "TSLA", "NVDA"])
+    background_tasks.add_task(run_fundamental_analysis, symbols)
     
     print("Starting fundamental analysis for symbols: AAPL, TSLA, NVDA")
     
