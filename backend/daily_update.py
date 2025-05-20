@@ -1,24 +1,19 @@
-from controller.fundamental_analysis.main import main as run_fundamental_analysis
-from controller.technical_analysis.main import main as run_technical_analysis
+import requests
 
-def run_daily_update():
-    print("🔁 Starting daily MongoDB update")
+def main(args=None):
+    endpoint = "https://pelican-predict-backend.onrender.com"
 
-    try:
-        print("📊 Running Fundamental Analysis...")
-        run_fundamental_analysis()
-        print("✅ Fundamental Analysis completed.\n")
-    except Exception as e:
-        print(f"❌ Error during Fundamental Analysis: {e}")
+    headers = {
+        "accept": "application/json",
+        "Content-Type": "application/json"
+    }
 
-    try:
-        print("📈 Running Technical Analysis...")
-        run_technical_analysis()
-        print("✅ Technical Analysis completed.\n")
-    except Exception as e:
-        print(f"❌ Error during Technical Analysis: {e}")
+    data = ["AAPL", "TSLA", "NVDA"]
 
-    print("✅ Daily update job finished.")
+    response = requests.post(endpoint + '/stocks/technical-analysis/generate',headers=headers, json=data)
+
+    print(response.text)
+    return "success"
 
 if __name__ == "__main__":
-    run_daily_update()
+    main()
