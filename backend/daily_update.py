@@ -10,9 +10,12 @@ def main(args=None):
 
     data = ["AAPL", "TSLA", "NVDA"]
 
-    response = requests.post(endpoint + '/stocks/technical-analysis/generate',headers=headers, json=data)
+    response1 = requests.post(endpoint + '/stocks/technical-analysis/generate',headers=headers, json=data)
+    response2 = requests.post(endpoint + '/stocks/fundamental-analysis/generate',headers=headers, json=data)
 
-    print(response.text)
+    print(response1.text)
+    print(response2.text)
+    
     return "success"
 
 if __name__ == "__main__":

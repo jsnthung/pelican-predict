@@ -5,6 +5,7 @@ import sys
 import os
 import importlib.util
 from pathlib import Path
+import controller.fundamental_analysis as run_fundamental_analysis
 
 router = APIRouter()
 mongodb = MongoDB(db_name="PeliCanStonks")
@@ -145,6 +146,28 @@ async def generate_technical_analysis(background_tasks: BackgroundTasks, symbols
     
     return {
         "message": f"Technical analysis started for symbols: {', '.join(symbols)}",
+        "status": "processing"
+    }
+
+@router.post("/fundamental-analysis/generate", response_model=Dict[str, Any])
+async def generate_fundamental_analysis(background_tasks: BackgroundTasks, symbols: Optional[List[str]] = None):
+    """
+    Generate a new fundamental analysis for the specified stock symbols
+    
+    Args:
+        symbols: List of stock symbols to analyze. Defaults to ["AAPL", "TSLA", "NVDA"]
+    """
+    if not symbols:
+        symbols = ["AAPL", "TSLA", "NVDA"]
+        
+    # Run the analysis in the background
+    background_tasks.add_task(run_fundamental_analysis, symbols)
+    
+    print(f"Starting fundamental analysis for symbols: {', '.join(symbols)}")
+    # Return a response indicating that the analysis has started
+    
+    return {
+        "message": f"Fundamental analysis started for symbols: {', '.join(symbols)}",
         "status": "processing"
     }
 
