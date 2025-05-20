@@ -1,4 +1,5 @@
 import os
+import certifi
 from pymongo import MongoClient
 from datetime import datetime
 from dotenv import load_dotenv
@@ -24,7 +25,8 @@ class MongoDB:
         if not self.client:
             self.client = MongoClient(
                 self.mongo_uri,
-                tls=True
+                tls=True,
+                tlsCAFile=certifi.where()
             )
             self.db = self.client[self.db_name]
             # Test connection

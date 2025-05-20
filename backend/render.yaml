@@ -7,11 +7,15 @@ services:
     runtime:
       pythonVersion: 3.10
       buildImage: ubuntu-22
+    rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
-    rootDir: backend
     envVars:
       - key: MONGO_URI
-        sync: false
+        sync: false  # Set this in the Render dashboard
       - key: OPENAI_API_KEY
         sync: false
+      - key: ENVIRONMENT
+        value: production
+      - key: FRONTEND_URL
+        value: https://pelican-predict-frontend.onrender.com
