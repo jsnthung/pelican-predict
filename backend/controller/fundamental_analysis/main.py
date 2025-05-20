@@ -1,6 +1,6 @@
-from data_loader import fetch_fundamentals, fetch_news, convert_fundamentals_to_JSON
-from gemini_client import ask_gemini
-from mongo_client import save_to_mongo, test_mongo_connection
+from controller.fundamental_analysis.data_loader import fetch_fundamentals, fetch_news, convert_fundamentals_to_JSON
+from controller.fundamental_analysis.gemini_client import ask_gemini
+from controller.fundamental_analysis.mongo_client import save_to_mongo, test_mongo_connection
 import json
 
 TICKERS = ["AAPL", "TSLA", "NVDA"]

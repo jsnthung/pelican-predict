@@ -6,7 +6,7 @@ import google.generativeai as genai
 from pathlib import Path
 from dotenv import load_dotenv
 
-from system_prompt import SYSTEM_PROMPT
+from controller.fundamental_analysis.system_prompt import SYSTEM_PROMPT
 
 # Load .env
 env_path = Path(__file__).parent.parent.parent / '.env'  # Changed to go up two directories to reach /backend
