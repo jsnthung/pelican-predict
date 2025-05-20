@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
 
-from alpaca_client import create_alpaca_client, fetch_stock_data
-from database import post_history, post_forecast
-from stock_forecast import get_stock_forecast
+from controller.technical_analysis.alpaca_client import create_alpaca_client, fetch_stock_data
+from controller.technical_analysis.database import post_history, post_forecast
+from controller.technical_analysis.stock_forecast import get_stock_forecast
 
 def process_stock(symbol):
     """Process a single stock and return its forecast and history data"""
