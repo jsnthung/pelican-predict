@@ -10,7 +10,9 @@
     "dev": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "react-typical": "^0.1.3",
+    "lottie-react": "^2.4.1"
   },
   "dependencies": {
     "lottie-react": "^2.4.1",
