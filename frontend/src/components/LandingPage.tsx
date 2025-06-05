@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import LoadingScene from "./Loading";
 import { useState } from "react";
-import Typical from "react-typical";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function LandingPage() {
   const [loaded, setLoaded] = useState(false);
@@ -21,10 +21,15 @@ export default function LandingPage() {
 
       {/* Headline Section */}
       <div className="text-center">
-        <h1 className="text-6xl font-bold leading-tight mb-6">
-          <Typical
-            steps={["Shortcut for Becoming a Sugar Daddy", 2000]}
-            wrapper="span"
+        <h1 className="text-7xl font-bold leading-tight mb-6">
+          <Typewriter
+            words={['Get Rich', 'Retire Early', 'Become a Sugar Daddy']}
+            loop
+            cursor
+            cursorStyle="|"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
           />
         </h1>
         <p className="text-gray-400 text-lg max-w-4xl mx-auto">
